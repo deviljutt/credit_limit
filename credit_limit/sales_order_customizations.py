@@ -35,7 +35,7 @@ def sales_order_on_submit(doc, method):
 
 
     xx = credit_limit-ordertotal;
-    exists = '';
+    exists = None;
     if xx < 0:
         xx = abs(xx)
         if xx <= price_level_one:
