@@ -19,7 +19,12 @@ def sales_order_on_submit(doc, method):
     user = frappe.get_doc("User", frappe.session.user)
     user = user.email
   
-    credit_limit = customer.credit_limits[0].credit_limit
+
+    if customer.credit_limits:
+        credit_limit = customer.credit_limits[0].credit_limit
+    else:
+        credit_limit = None
+
     ordertotal = doc.total
 
     docz = frappe.get_doc(doctype, doctype)  
@@ -63,7 +68,7 @@ def sales_order_on_submit(doc, method):
                 value_array = csv_values.split(",")
                 value_to_check = user
                 if value_to_check in value_array:
-                    exists = "approves"
+                    exists = "approve"
                 else:
                     exists = "Only CEO can approve"
 
@@ -71,7 +76,7 @@ def sales_order_on_submit(doc, method):
             pass   
 
 
-        if exists is not None and exists != 'approves':
+        if exists is not None and exists != 'approve':
             converted_string = str(exists) 
             throw(converted_string)
         else:
