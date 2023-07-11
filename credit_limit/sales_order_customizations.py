@@ -70,7 +70,7 @@ def sales_order_on_submit(doc, method):
          pass   
 
 
-    if exists != 'approves':
+    if exists is not None and exists != 'approves':
         converted_string = str(exists) 
         throw(converted_string)
     else:
