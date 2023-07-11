@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-10 08:25:32.041300",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "om_profile",
+  "ar_profile",
+  "ar_vp",
+  "price_level_one",
+  "price_level_two",
+  "price_level_three"
+ ],
+ "fields": [
+  {
+   "fieldname": "om_profile",
+   "fieldtype": "Data",
+   "label": "OM Profiles"
+  },
+  {
+   "fieldname": "price_level_one",
+   "fieldtype": "Data",
+   "label": "Price Level 1"
+  },
+  {
+   "fieldname": "ar_profile",
+   "fieldtype": "Data",
+   "label": "AR Profiles"
+  },
+  {
+   "fieldname": "price_level_two",
+   "fieldtype": "Data",
+   "label": "Price Level 2"
+  },
+  {
+   "fieldname": "ar_vp",
+   "fieldtype": "Data",
+   "label": "AR-VP"
+  },
+  {
+   "fieldname": "price_level_three",
+   "fieldtype": "Data",
+   "label": "Price Level 2"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-07-11 12:05:26.224054",
+ "modified_by": "Administrator",
+ "module": "Credit Limit",
+ "name": "Credit Limit Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
