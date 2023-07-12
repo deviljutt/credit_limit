@@ -46,7 +46,7 @@ def sales_order_on_submit(doc, method):
             xx = abs(xx)
 
 
-            if xx > 30000:
+            if xx > price_level_three:
                 approval_role = "CEO"
                 csv_values = ar_vp
                 value_array = csv_values.split(",")
@@ -55,7 +55,7 @@ def sales_order_on_submit(doc, method):
                     exists = "approve"
                 else:
                     exists = "Only CEO can approve"
-            elif xx > 20000:
+            elif xx > price_level_two:
                 approval_role = "Level 2"
                 csv_values = ar_profile
                 value_array = csv_values.split(",")
@@ -64,7 +64,7 @@ def sales_order_on_submit(doc, method):
                     exists = "approve"
                 else:
                     exists = "Only Level 2 can approve"
-            elif xx > 10000:
+            elif xx > price_level_one:
                 approval_role = "Level 1"
                 csv_values = om_profile
                 value_array = csv_values.split(",")
