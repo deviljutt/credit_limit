@@ -44,25 +44,9 @@ def sales_order_on_submit(doc, method):
         exists = None;
         if xx < 0:
             xx = abs(xx)
-            if xx <= price_level_one:
-                approval_role = "Level 1"
-                csv_values = om_profile
-                value_array = csv_values.split(",")
-                value_to_check = user
-                if value_to_check in value_array:
-                    exists = "approve"
-                else:
-                    exists = "Only Level 1 can approve"
-            elif price_level_one < xx <= price_level_two:
-                approval_role = "Level 2"
-                csv_values = ar_profile
-                value_array = csv_values.split(",")
-                value_to_check = user
-                if value_to_check in value_array:
-                    exists = "approve"
-                else:
-                    exists = "Only Level 2 can approve"
-            else:
+
+
+            if xx > 30000:
                 approval_role = "CEO"
                 csv_values = ar_vp
                 value_array = csv_values.split(",")
@@ -71,6 +55,27 @@ def sales_order_on_submit(doc, method):
                     exists = "approve"
                 else:
                     exists = "Only CEO can approve"
+            elif xx > 20000:
+                approval_role = "Level 2"
+                csv_values = ar_profile
+                value_array = csv_values.split(",")
+                value_to_check = user
+                if value_to_check in value_array:
+                    exists = "approve"
+                else:
+                    exists = "Only Level 2 can approve"
+            elif xx > 10000:
+                approval_role = "Level 1"
+                csv_values = om_profile
+                value_array = csv_values.split(",")
+                value_to_check = user
+                if value_to_check in value_array:
+                    exists = "approve"
+                else:
+                    exists = "Only Level 1 can approve"
+            elif xx > 0:
+                exists = None;
+
 
         else:
             pass   
