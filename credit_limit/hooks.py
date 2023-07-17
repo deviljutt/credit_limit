@@ -17,6 +17,12 @@ doc_events = {
    }
 }
 
+doc_events = {
+'Sales Invoice': {
+      'before_submit': 'credit_limit.sales_order_customizations.sales_invoice_on_submit'
+   }
+}
+
 
 
 
