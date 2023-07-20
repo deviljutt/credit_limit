@@ -124,6 +124,10 @@ def sales_invoice_on_submit(doc, method):
 
     converted_max_outstanding = int(max_outstanding)
     xx = converted_max_outstanding - days
+
+
+
+    
     
     
 

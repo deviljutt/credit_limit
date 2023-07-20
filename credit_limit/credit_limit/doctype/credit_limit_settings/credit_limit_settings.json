@@ -12,7 +12,11 @@
   "ar_vp",
   "price_level_one",
   "price_level_two",
-  "price_level_three"
+  "price_level_three",
+  "max_outstanding",
+  "credit_term_one",
+  "credit_term_two",
+  "credit_term_three"
  ],
  "fields": [
   {
@@ -44,12 +48,32 @@
    "fieldname": "price_level_three",
    "fieldtype": "Data",
    "label": "Price Level 2"
+  },
+  {
+   "fieldname": "max_outstanding",
+   "fieldtype": "Data",
+   "label": "Max AR age outstanding (Days) "
+  },
+  {
+   "fieldname": "credit_term_one",
+   "fieldtype": "Data",
+   "label": "Credit Term Day Level 1 (Days)"
+  },
+  {
+   "fieldname": "credit_term_two",
+   "fieldtype": "Data",
+   "label": "Credit Term Day Level 2 (Days)"
+  },
+  {
+   "fieldname": "credit_term_three",
+   "fieldtype": "Data",
+   "label": "Credit Term Day Level 3 (Days)"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-07-11 12:05:26.224054",
+ "modified": "2023-07-20 12:33:03.700935",
  "modified_by": "Administrator",
  "module": "Credit Limit",
  "name": "Credit Limit Settings",
