@@ -25,6 +25,11 @@ doc_events = {
 
 
 
+after_install = "credit_limit.reports.Customer_Credit_Limit_Report"
+
+
+
+
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/credit_limit/css/credit_limit.css"
