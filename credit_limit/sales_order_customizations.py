@@ -21,6 +21,10 @@ def sales_order_on_submit(doc, method):
 
     user = frappe.get_doc("User", frappe.session.user)
     user = user.email
+
+
+    if user.email == "apiadmin@mail.com":
+        return
   
 
     if customer.credit_limits:
@@ -98,6 +102,10 @@ def sales_invoice_on_submit(doc, method):
     user = frappe.get_doc("User", frappe.session.user)
     user = user.email
 
+
+    if user.email == "apiadmin@mail.com":
+        return
+
     posting_date = doc.posting_date
     date_object = datetime.strptime(posting_date, "%Y-%m-%d")
     posting_date = datetime.timestamp(date_object)
@@ -118,18 +126,18 @@ def sales_invoice_on_submit(doc, method):
     ar_vp = docz.ar_vp
     max_outstanding = docz.max_outstanding
 
+
+    credit_term = get_credit_days(customer_name)
+    outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
+
     credit_term_one = int(docz.credit_term_one)
     credit_term_two = int(docz.credit_term_two)
     credit_term_three = int(docz.credit_term_three)
 
     converted_max_outstanding = int(max_outstanding)
-    xx = converted_max_outstanding - days
-
-
-
     
-    
-    
+    xx = credit_term - outstandingdays
+
 
     if xx > credit_term_three:
         approval_role = "CEO"
@@ -171,9 +179,35 @@ def sales_invoice_on_submit(doc, method):
         throw(converted_string)
     else:
         pass 
-
+    
 
 
 def seconds_to_days(seconds):
     days = seconds // 86400
     return days
+
+def get_credit_days(customer_name):
+    customer = frappe.get_doc("Customer", customer_name)
+    payment_term_template_name = customer.payment_terms
+
+    credit_days = None
+    if payment_term_template_name:
+        payment_terms_template = frappe.get_doc("Payment Term", payment_term_template_name)
+        zzzzz = payment_terms_template.credit_days
+        return zzzzz
+    
+
+def get_date_difference_from_last_sale_invoice(customer_name):
+    invoices = frappe.get_all(
+        "Sales Invoice",
+        filters={"customer": customer_name, "docstatus": ["in", [0]]},
+        fields=["posting_date", "docstatus"],
+        order_by="posting_date desc",
+        limit_page_length=1 
+    )
+
+    if invoices:
+        last_invoice = invoices[0]
+        posting_date = last_invoice.posting_date
+        date_difference = datetime.now().date() - posting_date
+        return date_difference.days
