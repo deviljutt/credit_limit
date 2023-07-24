@@ -124,8 +124,11 @@ def sales_invoice_on_submit(doc, method):
     om_profile = docz.om_profile
     ar_profile = docz.ar_profile
     ar_vp = docz.ar_vp
-    max_outstanding = docz.max_outstanding
 
+
+    credit_term = None
+    outstandingdays = None
+    
 
     credit_term = get_credit_days(customer_name)
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
@@ -134,10 +137,10 @@ def sales_invoice_on_submit(doc, method):
     credit_term_two = int(docz.credit_term_two)
     credit_term_three = int(docz.credit_term_three)
 
-    converted_max_outstanding = int(max_outstanding)
-    
+    credit_term = int(credit_term) if credit_term is not None else 0
+    outstandingdays = int(outstandingdays) if outstandingdays is not None else 0
     xx = credit_term - outstandingdays
-
+    xx = abs(xx)
 
     if xx > credit_term_three:
         approval_role = "CEO"
