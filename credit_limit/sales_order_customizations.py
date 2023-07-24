@@ -23,7 +23,7 @@ def sales_order_on_submit(doc, method):
     user = user.email
 
 
-    if user.email == "apiadmin@mail.com":
+    if user == "apiadmin@mail.com":
         return
   
 
@@ -103,7 +103,7 @@ def sales_invoice_on_submit(doc, method):
     user = user.email
 
 
-    if user.email == "apiadmin@mail.com":
+    if user == "apiadmin@mail.com":
         return
 
     posting_date = doc.posting_date
