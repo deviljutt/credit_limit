@@ -24,6 +24,8 @@ doc_events = {
 }
 
 
+
+
 # include js, css files in header of desk.html
 # app_include_css = "/assets/credit_limit/css/credit_limit.css"
 # app_include_js = "/assets/credit_limit/js/credit_limit.js"

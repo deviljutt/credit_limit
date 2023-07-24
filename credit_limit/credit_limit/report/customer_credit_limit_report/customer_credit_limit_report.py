@@ -34,9 +34,9 @@ def execute(filters=None):
 		if customer_naming_type == "Naming Series":
 			row = [
 				d.name,
-				d.customer_name,
 				credit_limit,
 				outstanding_amt,
+				d.cheque_amount,
 				bal,
 				d.bypass_credit_limit_check,
 				d.is_frozen,
@@ -47,6 +47,7 @@ def execute(filters=None):
 				d.name,
 				credit_limit,
 				outstanding_amt,
+				d.cheque_amount,
 				bal,
 				d.bypass_credit_limit_check,
 				d.is_frozen,
@@ -63,7 +64,8 @@ def get_columns(customer_naming_type):
 	columns = [
 		_("Customer") + ":Link/Customer:120",
 		_("Credit Limit") + ":Currency:120",
-		_("Outstanding Amt") + ":Currency:100",
+		_("Outstanding Invoice") + ":Currency:100",
+		_("Outstanding Cheque") + ":Currency:120",
 		_("Credit Balance") + ":Currency:120",
 		_("Bypass credit check at Sales Order") + ":Check:80",
 		_("Is Frozen") + ":Check:80",
@@ -77,18 +79,25 @@ def get_columns(customer_naming_type):
 
 
 def get_details(filters):
-
-	sql_query = """SELECT
-						c.name, c.customer_name,
-						ccl.bypass_credit_limit_check,
-						c.is_frozen, c.disabled
-					FROM `tabCustomer` c, `tabCustomer Credit Limit` ccl
-					WHERE
-						c.name = ccl.parent
-						AND ccl.company = %(company)s"""
+	sql_query = """
+		SELECT
+			c.name,
+			c.customer_name,
+			ccl.bypass_credit_limit_check,
+			c.is_frozen,
+			c.disabled,
+			SUM(pe.paid_amount) AS cheque_amount
+		FROM `tabCustomer` c
+		INNER JOIN `tabCustomer Credit Limit` ccl ON c.name = ccl.parent
+		LEFT JOIN `tabPayment Entry` pe ON c.name = pe.party
+		WHERE ccl.company = %(company)s
+		AND (pe.mode_of_payment = 'Cheque' OR pe.mode_of_payment IS NULL)
+	"""
 
 	# customer filter is optional.
 	if filters.get("customer"):
 		sql_query += " AND c.name = %(customer)s"
+
+	sql_query += " GROUP BY c.name"
 
 	return frappe.db.sql(sql_query, filters, as_dict=1)

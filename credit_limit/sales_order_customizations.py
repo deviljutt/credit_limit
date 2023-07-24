@@ -126,10 +126,6 @@ def sales_invoice_on_submit(doc, method):
     ar_vp = docz.ar_vp
 
 
-    credit_term = None
-    outstandingdays = None
-    
-
     credit_term = get_credit_days(customer_name)
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
 
@@ -137,11 +133,10 @@ def sales_invoice_on_submit(doc, method):
     credit_term_two = int(docz.credit_term_two)
     credit_term_three = int(docz.credit_term_three)
 
-    credit_term = int(credit_term) if credit_term is not None else 0
-    outstandingdays = int(outstandingdays) if outstandingdays is not None else 0
-    xx = credit_term - outstandingdays
+    
+    xx = int(credit_term) - int(outstandingdays)
     xx = abs(xx)
-
+    
     if xx > credit_term_three:
         approval_role = "CEO"
         csv_values = ar_vp
@@ -174,11 +169,11 @@ def sales_invoice_on_submit(doc, method):
             exists = "Only Level 1 can approve"
     
     else:
-        exists = "You have to wait before you can submit the invoice"
+        exists = xx
 
 
     if exists is not None and exists != 'approve':
-        converted_string = str(exists) 
+        converted_string = str(xx) 
         throw(converted_string)
     else:
         pass 
