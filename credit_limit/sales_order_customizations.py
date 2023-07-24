@@ -134,7 +134,7 @@ def sales_invoice_on_submit(doc, method):
     credit_term_three = int(docz.credit_term_three)
 
     
-    xx = credit_term - outstandingdays
+    xx = int(credit_term) - int(outstandingdays)
 
 
     if xx > credit_term_three:
