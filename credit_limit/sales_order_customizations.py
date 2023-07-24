@@ -140,7 +140,7 @@ def sales_invoice_on_submit(doc, method):
     credit_term = int(credit_term) if credit_term is not None else 0
     outstandingdays = int(outstandingdays) if outstandingdays is not None else 0
     xx = credit_term - outstandingdays
-
+    xx = abs(xx)
 
     if xx > credit_term_three:
         approval_role = "CEO"
