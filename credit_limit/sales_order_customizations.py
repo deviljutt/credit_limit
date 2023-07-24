@@ -124,7 +124,6 @@ def sales_invoice_on_submit(doc, method):
     om_profile = docz.om_profile
     ar_profile = docz.ar_profile
     ar_vp = docz.ar_vp
-    max_outstanding = docz.max_outstanding
 
 
     credit_term = get_credit_days(customer_name)
@@ -134,7 +133,6 @@ def sales_invoice_on_submit(doc, method):
     credit_term_two = int(docz.credit_term_two)
     credit_term_three = int(docz.credit_term_three)
 
-    converted_max_outstanding = int(max_outstanding)
     
     xx = credit_term - outstandingdays
 
