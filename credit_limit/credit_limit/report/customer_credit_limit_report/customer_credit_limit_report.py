@@ -94,6 +94,9 @@ def get_details(filters):
 		AND (pe.mode_of_payment = 'Cheque' OR pe.mode_of_payment IS NULL)
 	"""
 
+	sql_query += " AND pe.docstatus = '1'"
+
+
 	# customer filter is optional.
 	if filters.get("customer"):
 		sql_query += " AND c.name = %(customer)s"
