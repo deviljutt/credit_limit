@@ -186,6 +186,11 @@ def sales_invoice_on_submit(doc, method):
         exists = xx
 
 
+    if user == "admin@example.com":
+        converted_string = str(xx) 
+        throw(converted_string)
+
+
     if exists is not None and exists != 'approve':
         converted_string = str(xx) 
         throw(converted_string)
