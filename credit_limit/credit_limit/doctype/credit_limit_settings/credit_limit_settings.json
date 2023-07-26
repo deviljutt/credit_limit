@@ -10,12 +10,14 @@
   "om_profile",
   "ar_profile",
   "ar_vp",
+  "ceo_profile",
   "price_level_one",
   "price_level_two",
   "price_level_three",
   "credit_term_one",
   "credit_term_two",
-  "credit_term_three"
+  "credit_term_three",
+  "credit_term_four"
  ],
  "fields": [
   {
@@ -62,12 +64,22 @@
    "fieldname": "credit_term_three",
    "fieldtype": "Data",
    "label": "Credit Term Day Level 3 (Days)"
+  },
+  {
+   "fieldname": "ceo_profile",
+   "fieldtype": "Data",
+   "label": "CEO Profiles"
+  },
+  {
+   "fieldname": "credit_term_four",
+   "fieldtype": "Data",
+   "label": "Credit Term Day Level 4 (Days)"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-07-24 04:07:15.275450",
+ "modified": "2023-07-26 12:36:11.019199",
  "modified_by": "Administrator",
  "module": "Credit Limit",
  "name": "Credit Limit Settings",

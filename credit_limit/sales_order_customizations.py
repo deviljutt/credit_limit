@@ -132,14 +132,16 @@ def sales_invoice_on_submit(doc, method):
     credit_term_one = int(docz.credit_term_one)
     credit_term_two = int(docz.credit_term_two)
     credit_term_three = int(docz.credit_term_three)
+    credit_term_four = int(docz.credit_term_four)
 
     if credit_term is None:
         return
-
+    
     xx = int(credit_term) - int(outstandingdays)
     xx = abs(xx)
-    
-    if xx > credit_term_three:
+
+
+    if xx > credit_term_four:
         approval_role = "CEO"
         csv_values = ar_vp
         value_array = csv_values.split(",")
@@ -148,6 +150,16 @@ def sales_invoice_on_submit(doc, method):
             exists = "approve"
         else:
             exists = "Only CEO can approve"
+    
+    elif xx > credit_term_three:
+        approval_role = "AR-VP"
+        csv_values = ar_vp
+        value_array = csv_values.split(",")
+        value_to_check = user
+        if value_to_check in value_array:
+            exists = "approve"
+        else:
+            exists = "Only AR-VP can approve"
 
 
     elif xx > credit_term_two:
