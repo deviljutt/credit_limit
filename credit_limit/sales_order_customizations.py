@@ -5,6 +5,7 @@ from frappe.model.document import Document
 from frappe import msgprint
 from frappe import throw
 import sys
+import logging
 from datetime import datetime
 
 
@@ -124,6 +125,7 @@ def sales_invoice_on_submit(doc, method):
     om_profile = docz.om_profile
     ar_profile = docz.ar_profile
     ar_vp = docz.ar_vp
+    ceo_profile = docz.ceo_profile
 
 
     credit_term = get_credit_days(customer_name)
@@ -140,10 +142,9 @@ def sales_invoice_on_submit(doc, method):
     xx = int(credit_term) - int(outstandingdays)
     xx = abs(xx)
 
-
     if xx > credit_term_four:
         approval_role = "CEO"
-        csv_values = ar_vp
+        csv_values = ceo_profile
         value_array = csv_values.split(",")
         value_to_check = user
         if value_to_check in value_array:
@@ -186,13 +187,9 @@ def sales_invoice_on_submit(doc, method):
         exists = xx
 
 
-    if user == "admin@example.com":
-        converted_string = str(xx) 
-        throw(converted_string)
-
 
     if exists is not None and exists != 'approve':
-        converted_string = str(xx) 
+        converted_string = str(exists) 
         throw(converted_string)
     else:
         pass 
