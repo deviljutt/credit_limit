@@ -133,7 +133,7 @@ def sales_invoice_on_submit(doc, method):
     credit_term_two = int(docz.credit_term_two)
     credit_term_three = int(docz.credit_term_three)
 
-    if credit_term == null:
+    if credit_term is None:
         return
 
     xx = int(credit_term) - int(outstandingdays)
