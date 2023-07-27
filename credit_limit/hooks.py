@@ -17,15 +17,6 @@ doc_events = {
    }
 }
 
-doc_events = {
-'Sales Invoice': {
-      'before_submit': 'credit_limit.sales_order_customizations.sales_invoice_on_submit'
-   }
-}
-
-
-
-
 # include js, css files in header of desk.html
 # app_include_css = "/assets/credit_limit/css/credit_limit.css"
 # app_include_js = "/assets/credit_limit/js/credit_limit.js"
