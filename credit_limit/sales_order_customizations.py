@@ -126,12 +126,9 @@ def sales_order_on_submit(doc, method):
         return
 
 
-     converted_string = str(outstandingdays) 
-     throw(converted_string)
-    
-    
-    xx = int(credit_term) - int(outstandingdays) 
-    xx = abs(xx)
+     
+    converted_string = str(outstandingdays) 
+    throw(converted_string)
 
 
    
