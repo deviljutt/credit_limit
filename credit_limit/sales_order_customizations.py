@@ -125,13 +125,8 @@ def sales_order_on_submit(doc, method):
     if credit_term is None:
         return
 
-
-     
-    converted_string = str(outstandingdays) 
-    throw(converted_string)
-
-
-   
+    xx = int(credit_term) - int(outstandingdays) 
+    xx = abs(xx)
 
     if xx > credit_term_four:
         approval_role = "CEO"
