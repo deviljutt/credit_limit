@@ -124,8 +124,6 @@ def sales_order_on_submit(doc, method):
 
     if credit_term is None:
         return
-    if outstandingdays is None:
-        return    
 
     xx = int(credit_term) - int(outstandingdays) 
     xx = abs(xx)
@@ -214,7 +212,7 @@ def get_date_difference_from_last_sale_invoice(customer_name):
         date_difference = datetime.now().date() - posting_date
         return date_difference.days
     else
-        return None
+        return 0
 
 
 
