@@ -24,10 +24,6 @@ def sales_order_on_submit(doc, method):
     user = user.email
 
 
-    if user == "apiadmin@mail.com":
-        return
-  
-
     if customer.credit_limits:
         credit_limit = customer.credit_limits[0].credit_limit
     else:
@@ -82,14 +78,7 @@ def sales_order_on_submit(doc, method):
                 else:
                     exists = "Only Level 1 can approve"
             elif xx > 0:
-                exists = None;
-
-
-        else:
-            pass   
-
-
-            
+                exists = None;       
         
         
 
