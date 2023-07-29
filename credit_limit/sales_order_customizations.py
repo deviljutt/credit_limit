@@ -43,8 +43,7 @@ def sales_order_on_submit(doc, method):
     price_level_three = int(docz.price_level_three)
 
 
-    converted_string = str(credit_limit) 
-    throw(converted_string)
+   
     
     if credit_limit is not None:
         xx = credit_limit-ordertotal;
@@ -83,7 +82,12 @@ def sales_order_on_submit(doc, method):
             elif xx > 0:
                 exists = None;       
         
-        
+
+
+        converted_string = str(exists) 
+        throw(converted_string)
+
+    
 
         customer_name = doc.customer
         customer = frappe.get_doc("Customer", doc.customer)
