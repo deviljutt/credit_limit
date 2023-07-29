@@ -205,7 +205,7 @@ def get_credit_days(customer_name):
 def get_date_difference_from_last_sale_invoice(customer_name):
     invoices = frappe.get_all(
         "Sales Invoice",
-        filters={"customer": customer_name, "docstatus": ["in", [0]]},
+        filters={"customer": customer_name, "docstatus": ["in", [1]]},
         fields=["posting_date", "docstatus"],
         order_by="posting_date desc",
         limit_page_length=1 
