@@ -125,6 +125,11 @@ def sales_order_on_submit(doc, method):
     if credit_term is None:
         return
     
+    
+    xx = int(credit_term) - int(outstandingdays) 
+    xx = abs(xx)
+
+
     converted_string = str(xx) 
     throw(converted_string)
 
