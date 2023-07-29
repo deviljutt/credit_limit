@@ -43,6 +43,9 @@ def sales_order_on_submit(doc, method):
     price_level_three = int(docz.price_level_three)
 
 
+    converted_string = str(credit_limit) 
+    throw(converted_string)
+    
     if credit_limit is not None:
         xx = credit_limit-ordertotal;
         exists = None;
@@ -120,10 +123,6 @@ def sales_order_on_submit(doc, method):
         if credit_term is None:
             return
         
-        xx = int(credit_term) - int(outstandingdays)
-        xx = abs(xx)
-
-
         converted_string = str(xx) 
         throw(converted_string)
 
