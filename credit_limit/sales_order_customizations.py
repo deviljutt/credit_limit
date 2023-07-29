@@ -50,8 +50,6 @@ def sales_order_on_submit(doc, method):
         exists = None;
         if xx < 0:
             xx = abs(xx)
-
-
             if xx > price_level_three:
                 approval_role = "CEO"
                 csv_values = ar_vp
@@ -80,103 +78,103 @@ def sales_order_on_submit(doc, method):
                 else:
                     exists = "Only Level 1 can approve"
             elif xx > 0:
-                exists = None;       
+                exists = None;   
         
 
-
-        converted_string = str(exists) 
-        throw(converted_string)
+            if exists is not None and exists != 'approve':
+                converted_string = str(exists) 
+                throw(converted_string)
 
     
 
-        customer_name = doc.customer
-        customer = frappe.get_doc("Customer", doc.customer)
-        user = frappe.get_doc("User", frappe.session.user)
-        user = user.email
+    customer_name = doc.customer
+    customer = frappe.get_doc("Customer", doc.customer)
+    user = frappe.get_doc("User", frappe.session.user)
+    user = user.email
 
 
-        posting_date = doc.transaction_date
-        date_object = datetime.strptime(posting_date, "%Y-%m-%d")
-        posting_date = datetime.timestamp(date_object)
+    posting_date = doc.transaction_date
+    date_object = datetime.strptime(posting_date, "%Y-%m-%d")
+    posting_date = datetime.timestamp(date_object)
 
 
-        current_datetime = datetime.now()
-        timestamp = datetime.timestamp(current_datetime)
+    current_datetime = datetime.now()
+    timestamp = datetime.timestamp(current_datetime)
 
 
-        time_difference =  timestamp - posting_date
-        days = int(seconds_to_days(time_difference))
+    time_difference =  timestamp - posting_date
+    days = int(seconds_to_days(time_difference))
 
 
-        doctype = "Credit Limit Settings"
-        docz = frappe.get_doc(doctype, doctype)  
-        om_profile = docz.om_profile
-        ar_profile = docz.ar_profile
-        ar_vp = docz.ar_vp
-        ceo_profile = docz.ceo_profile
+    doctype = "Credit Limit Settings"
+    docz = frappe.get_doc(doctype, doctype)  
+    om_profile = docz.om_profile
+    ar_profile = docz.ar_profile
+    ar_vp = docz.ar_vp
+    ceo_profile = docz.ceo_profile
 
 
-        credit_term = get_credit_days(customer_name)
-        outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
+    credit_term = get_credit_days(customer_name)
+    outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
 
-        credit_term_one = int(docz.credit_term_one)
-        credit_term_two = int(docz.credit_term_two)
-        credit_term_three = int(docz.credit_term_three)
-        credit_term_four = int(docz.credit_term_four)
+    credit_term_one = int(docz.credit_term_one)
+    credit_term_two = int(docz.credit_term_two)
+    credit_term_three = int(docz.credit_term_three)
+    credit_term_four = int(docz.credit_term_four)
 
-        if credit_term is None:
-            return
-        
-        converted_string = str(xx) 
-        throw(converted_string)
+    if credit_term is None:
+        return
+    
+    converted_string = str(xx) 
+    throw(converted_string)
 
-        if xx > credit_term_four:
-            approval_role = "CEO"
-            csv_values = ceo_profile
-            value_array = csv_values.split(",")
-            value_to_check = user
-            if value_to_check in value_array:
-                exists = "approve"
-            else:
-                exists = "Only CEO can approve"
-        
-        elif xx > credit_term_three:
-            approval_role = "AR-VP"
-            csv_values = ar_vp
-            value_array = csv_values.split(",")
-            value_to_check = user
-            if value_to_check in value_array:
-                exists = "approve"
-            else:
-                exists = "Only AR-VP can approve"
-
-
-        elif xx > credit_term_two:
-            approval_role = "Level 2"
-            csv_values = ar_profile
-            value_array = csv_values.split(",")
-            value_to_check = user
-            if value_to_check in value_array:
-                exists = "approve"
-            else:
-                exists = "Only Level 2 can approve"
-
-        elif xx > credit_term_one:
-            approval_role = "Level 1"
-            csv_values = om_profile
-            value_array = csv_values.split(",")
-            value_to_check = user
-            if value_to_check in value_array:
-                exists = "approve"
-            else:
-                exists = "Only Level 1 can approve"
-     
-
-        if exists is not None and exists != 'approve':
-            converted_string = str(exists) 
-            throw(converted_string)
+    if xx > credit_term_four:
+        approval_role = "CEO"
+        csv_values = ceo_profile
+        value_array = csv_values.split(",")
+        value_to_check = user
+        if value_to_check in value_array:
+            exists = "approve"
         else:
-            pass 
+            exists = "Only CEO can approve"
+    
+    elif xx > credit_term_three:
+        approval_role = "AR-VP"
+        csv_values = ar_vp
+        value_array = csv_values.split(",")
+        value_to_check = user
+        if value_to_check in value_array:
+            exists = "approve"
+        else:
+            exists = "Only AR-VP can approve"
+
+
+    elif xx > credit_term_two:
+        approval_role = "Level 2"
+        csv_values = ar_profile
+        value_array = csv_values.split(",")
+        value_to_check = user
+        if value_to_check in value_array:
+            exists = "approve"
+        else:
+            exists = "Only Level 2 can approve"
+
+    elif xx > credit_term_one:
+        approval_role = "Level 1"
+        csv_values = om_profile
+        value_array = csv_values.split(",")
+        value_to_check = user
+        if value_to_check in value_array:
+            exists = "approve"
+        else:
+            exists = "Only Level 1 can approve"
+    
+
+    if exists is not None and exists != 'approve':
+        converted_string = str(exists) 
+        throw(converted_string)
+    else:
+        pass 
           
     
 def sales_invoice_on_submit(doc, method):
