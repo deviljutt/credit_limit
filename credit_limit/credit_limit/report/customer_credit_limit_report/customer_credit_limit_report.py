@@ -77,17 +77,15 @@ def get_details(filters):
 
 	sql_query = """
 		SELECT
-			c.name,
-			c.customer_name,
-			c.is_frozen,
-			c.disabled,
-			SUM(pe.paid_amount) AS cheque_amount
+			name,
+			customer_name,
+			customer_group,
+			territory,
+			(SELECT SUM(paid_amount) FROM `tabPayment Entry` pe WHERE pe.party = c.name AND pe.mode_of_payment = 'Cheque' AND pe.docstatus = '1') AS cheque_amount,
+			(SELECT COUNT(name) FROM `tabSales Order` so WHERE so.customer = c.name AND so.docstatus = '1') AS total_sales_orders
 		FROM `tabCustomer` c
-		LEFT JOIN `tabPayment Entry` pe ON c.name = pe.party
-		WHERE (pe.mode_of_payment = 'Cheque')
 	"""
-
-	sql_query += " AND pe.docstatus = '1'"
+	
 
 	# customer filter is optional.
 	if filters.get("customer"):
