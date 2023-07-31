@@ -91,7 +91,7 @@ def get_details(filters):
 		INNER JOIN `tabCustomer Credit Limit` ccl ON c.name = ccl.parent
 		LEFT JOIN `tabPayment Entry` pe ON c.name = pe.party
 		WHERE ccl.company = %(company)s
-		AND (pe.mode_of_payment = 'Cheque' OR pe.mode_of_payment IS NULL)
+		AND (pe.mode_of_payment = 'Cheque')
 	"""
 
 	sql_query += " AND pe.docstatus = '1'"
