@@ -38,7 +38,6 @@ def execute(filters=None):
 				outstanding_amt,
 				d.cheque_amount,
 				bal,
-				d.bypass_credit_limit_check,
 				d.is_frozen,
 				d.disabled,
 			]
@@ -49,7 +48,6 @@ def execute(filters=None):
 				outstanding_amt,
 				d.cheque_amount,
 				bal,
-				d.bypass_credit_limit_check,
 				d.is_frozen,
 				d.disabled,
 			]
@@ -67,7 +65,6 @@ def get_columns(customer_naming_type):
 		_("Outstanding Invoice") + ":Currency:100",
 		_("Outstanding Cheque") + ":Currency:120",
 		_("Credit Balance") + ":Currency:120",
-		_("Bypass credit check at Sales Order") + ":Check:80",
 		_("Is Frozen") + ":Check:80",
 		_("Disabled") + ":Check:80",
 	]
@@ -83,15 +80,12 @@ def get_details(filters):
 		SELECT
 			c.name,
 			c.customer_name,
-			ccl.bypass_credit_limit_check,
 			c.is_frozen,
 			c.disabled,
 			SUM(pe.paid_amount) AS cheque_amount
 		FROM `tabCustomer` c
-		INNER JOIN `tabCustomer Credit Limit` ccl ON c.name = ccl.parent
 		LEFT JOIN `tabPayment Entry` pe ON c.name = pe.party
-		WHERE ccl.company = %(company)s
-		AND (pe.mode_of_payment = 'Cheque')
+		WHERE (pe.mode_of_payment = 'Cheque')
 	"""
 
 	sql_query += " AND pe.docstatus = '1'"
