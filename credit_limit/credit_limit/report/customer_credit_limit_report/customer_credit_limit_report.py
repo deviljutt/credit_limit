@@ -52,8 +52,7 @@ def execute(filters=None):
 				d.disabled,
 			]
 
-		if credit_limit:
-			data.append(row)
+		data.append(row)
 
 	return columns, data
 
@@ -74,8 +73,8 @@ def get_columns(customer_naming_type):
 
 	return columns
 
-
 def get_details(filters):
+
 	sql_query = """
 		SELECT
 			c.name,
@@ -90,11 +89,8 @@ def get_details(filters):
 
 	sql_query += " AND pe.docstatus = '1'"
 
-
 	# customer filter is optional.
 	if filters.get("customer"):
 		sql_query += " AND c.name = %(customer)s"
-
-	sql_query += " GROUP BY c.name"
 
 	return frappe.db.sql(sql_query, filters, as_dict=1)
