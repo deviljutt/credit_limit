@@ -34,9 +34,12 @@ def sales_order_on_submit(doc, method):
     ar_vp = docz.ar_vp
 
 
-    price_level_one = docz.price_level_one
-    price_level_two = docz.price_level_two
-    price_level_three = docz.price_level_three
+    price_level_one = int(docz.price_level_one)
+    price_level_two = int(docz.price_level_two)
+    price_level_three = int(docz.price_level_three)
+
+    converted_string = str(docz.price_level_one) 
+    throw(converted_string)
 
 
    
