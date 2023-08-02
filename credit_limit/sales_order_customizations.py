@@ -42,8 +42,8 @@ def sales_order_on_submit(doc, method):
 
 
     if credit_limit is not None:
-        xx = credit_limit-ordertotal;
-        exists = None;
+        xx = credit_limit-ordertotal
+        exists = None
         if xx > 0:
             xx = abs(xx)
             if xx > price_level_three:
@@ -78,7 +78,7 @@ def sales_order_on_submit(doc, method):
         
 
     
-    converted_string = str(exists) 
+    converted_string = str(xx) 
     throw(converted_string)
 
 
