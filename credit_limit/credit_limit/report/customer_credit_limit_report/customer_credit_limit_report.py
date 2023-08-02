@@ -77,14 +77,14 @@ def get_details(filters):
 
 	sql_query = """
 		SELECT
-			name,
-			customer_name,
-			customer_group,
-			territory,
+			c.name,
+			c.customer_name,
+			c.customer_group,
+			c.territory,
 			(SELECT SUM(paid_amount) FROM `tabPayment Entry` pe WHERE pe.party = c.name AND pe.mode_of_payment = 'Cheque' AND pe.docstatus = '1') AS cheque_amount,
 			(SELECT COUNT(name) FROM `tabSales Order` so WHERE so.customer = c.name AND so.docstatus = '1') AS total_sales_orders
-		FROM `tabCustomer` c
-	"""
+		FROM `tabCustomer` c, `tabCustomer Credit Limit` ccl WHERE c.name = ccl.parent AND ccl.company = %(company)s"""
+				
 	
 
 	# customer filter is optional.
