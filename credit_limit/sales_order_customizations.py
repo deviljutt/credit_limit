@@ -78,7 +78,7 @@ def sales_order_on_submit(doc, method):
         
 
     
-    converted_string = str(xx) 
+    converted_string = str(exists) 
     throw(converted_string)
 
 
