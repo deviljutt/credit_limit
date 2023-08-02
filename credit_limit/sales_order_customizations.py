@@ -81,11 +81,11 @@ def sales_order_on_submit(doc, method):
                 exists = None;   
         
 
-            if exists is not None and exists != 'approve':
-                converted_string = str(exists) 
-                throw(converted_string)
-
     
+    if exists is not None and exists != 'approve':
+        converted_string = str(exists) 
+        throw(converted_string)
+
 
     customer_name = doc.customer
     customer = frappe.get_doc("Customer", doc.customer)
@@ -124,6 +124,7 @@ def sales_order_on_submit(doc, method):
 
     if credit_term is None:
         return
+    
 
     xx = int(credit_term) - int(outstandingdays) 
     xx = abs(xx)
@@ -211,8 +212,3 @@ def get_date_difference_from_last_sale_invoice(customer_name):
         posting_date = last_invoice.posting_date
         date_difference = datetime.now().date() - posting_date
         return date_difference.days
-    else:
-        return 0
-
-
-
