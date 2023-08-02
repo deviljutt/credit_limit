@@ -73,8 +73,7 @@ def sales_order_on_submit(doc, method):
                     exists = "approve"
                 else:
                     exists = "Only Level 1 can approve"
-            elif xx > 0:
-                exists = '777';   
+           
         
 
     
