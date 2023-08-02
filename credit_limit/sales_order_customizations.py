@@ -44,8 +44,8 @@ def sales_order_on_submit(doc, method):
     if credit_limit is not None:
         xx = credit_limit-ordertotal
         exists = None
+        xx = abs(xx)
         if xx > 0:
-            xx = abs(xx)
             if xx > price_level_three:
                 approval_role = "CEO"
                 csv_values = ar_vp
