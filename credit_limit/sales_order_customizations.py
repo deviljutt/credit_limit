@@ -38,8 +38,7 @@ def sales_order_on_submit(doc, method):
     price_level_two = int(docz.price_level_two)
     price_level_three = int(docz.price_level_three)
 
-    converted_string = str(credit_limit-ordertotal) 
-    throw(converted_string)
+    
 
 
     if credit_limit is not None:
@@ -79,9 +78,8 @@ def sales_order_on_submit(doc, method):
         
 
     
-    if exists is not None and exists != 'approve':
-        converted_string = str(exists) 
-        throw(converted_string)
+    converted_string = str(exists) 
+    throw(converted_string)
 
 
     customer_name = doc.customer
