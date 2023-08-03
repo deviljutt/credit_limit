@@ -19,6 +19,9 @@ def sales_order_on_submit(doc, method):
     user = frappe.get_doc("User", frappe.session.user)
     user = user.email
 
+    if user == "admin@example.com":
+        pass
+
 
     if customer.credit_limits:
         credit_limit = customer.credit_limits[0].credit_limit
