@@ -78,10 +78,11 @@ def sales_order_on_submit(doc, method):
                     exists = "Only CEO can approve"
            
         
-
+    if exists is not None and exists != 'approve':
+        converted_string = str(exists) 
+        throw(converted_string)
     
-    converted_string = str(exists) 
-    throw(converted_string)
+    
 
 
     customer_name = doc.customer
