@@ -98,8 +98,8 @@ def sales_order_on_submit(doc, method):
     if exists is not None and exists != 'approve':
         converted_string = str(exists) 
         throw(converted_string)
+        
     
-
     customer_name = doc.customer
     customer = frappe.get_doc("Customer", doc.customer)
     user = frappe.get_doc("User", frappe.session.user)
@@ -136,7 +136,7 @@ def sales_order_on_submit(doc, method):
     credit_term_four = int(docz.credit_term_four)
 
     if credit_term is None:
-        return
+        pass
     
 
     xx = int(credit_term) - int(outstandingdays) 
