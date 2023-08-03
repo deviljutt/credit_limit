@@ -20,7 +20,7 @@ def sales_order_on_submit(doc, method):
     user = user.email
 
     if user == "admin@example.com":
-        pass
+        return        
 
 
     if customer.credit_limits:
@@ -136,7 +136,7 @@ def sales_order_on_submit(doc, method):
     credit_term_four = int(docz.credit_term_four)
 
     if credit_term is None:
-        pass
+        return
     
 
     xx = int(credit_term) - int(outstandingdays) 
