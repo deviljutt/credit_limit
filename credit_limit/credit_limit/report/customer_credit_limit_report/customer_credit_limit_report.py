@@ -38,7 +38,6 @@ def execute(filters=None):
 				outstanding_amt,
 				d.cheque_amount,
 				bal,
-				d.bypass_credit_limit_check,
 				d.is_frozen,
 				d.disabled,
 			]
@@ -49,13 +48,11 @@ def execute(filters=None):
 				outstanding_amt,
 				d.cheque_amount,
 				bal,
-				d.bypass_credit_limit_check,
 				d.is_frozen,
 				d.disabled,
 			]
 
-		if credit_limit:
-			data.append(row)
+		data.append(row)
 
 	return columns, data
 
@@ -67,7 +64,6 @@ def get_columns(customer_naming_type):
 		_("Outstanding Invoice") + ":Currency:100",
 		_("Outstanding Cheque") + ":Currency:120",
 		_("Credit Balance") + ":Currency:120",
-		_("Bypass credit check at Sales Order") + ":Check:80",
 		_("Is Frozen") + ":Check:80",
 		_("Disabled") + ":Check:80",
 	]
@@ -77,30 +73,22 @@ def get_columns(customer_naming_type):
 
 	return columns
 
-
 def get_details(filters):
+
 	sql_query = """
 		SELECT
 			c.name,
 			c.customer_name,
-			ccl.bypass_credit_limit_check,
-			c.is_frozen,
-			c.disabled,
-			SUM(pe.paid_amount) AS cheque_amount
-		FROM `tabCustomer` c
-		INNER JOIN `tabCustomer Credit Limit` ccl ON c.name = ccl.parent
-		LEFT JOIN `tabPayment Entry` pe ON c.name = pe.party
-		WHERE ccl.company = %(company)s
-		AND (pe.mode_of_payment = 'Cheque' OR pe.mode_of_payment IS NULL)
-	"""
-
-	sql_query += " AND pe.docstatus = '1'"
-
+			c.customer_group,
+			c.territory,
+			(SELECT SUM(paid_amount) FROM `tabPayment Entry` pe WHERE pe.party = c.name AND pe.mode_of_payment = 'Cheque' AND pe.docstatus = '1') AS cheque_amount,
+			(SELECT COUNT(name) FROM `tabSales Order` so WHERE so.customer = c.name AND so.docstatus = '1') AS total_sales_orders
+		FROM `tabCustomer` c, `tabCustomer Credit Limit` ccl WHERE c.name = ccl.parent AND ccl.company = %(company)s"""
+				
+	
 
 	# customer filter is optional.
 	if filters.get("customer"):
 		sql_query += " AND c.name = %(customer)s"
-
-	sql_query += " GROUP BY c.name"
 
 	return frappe.db.sql(sql_query, filters, as_dict=1)

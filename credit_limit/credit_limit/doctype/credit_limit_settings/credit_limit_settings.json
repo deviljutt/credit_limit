@@ -48,7 +48,7 @@
   {
    "fieldname": "price_level_three",
    "fieldtype": "Data",
-   "label": "Price Level 2"
+   "label": "Price Level 3"
   },
   {
    "fieldname": "credit_term_one",
@@ -79,7 +79,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-07-26 12:36:11.019199",
+ "modified": "2023-08-03 08:12:02.604346",
  "modified_by": "Administrator",
  "module": "Credit Limit",
  "name": "Credit Limit Settings",
