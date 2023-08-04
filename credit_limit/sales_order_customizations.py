@@ -45,11 +45,11 @@ def sales_order_on_submit(doc, method):
     
    
     
-
+    exists = None
 
     if credit_limit is not None:
         xx = credit_limit-ordertotal
-        exists = None
+        
 
      
         
