@@ -127,12 +127,6 @@ def sales_order_on_submit(doc, method):
     credit_term = get_credit_days(customer_name)
     if credit_term is None:
         return
-
-    converted_string = str(credit_term) 
-    throw(converted_string)
-
-
-
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
 
     credit_term_one = int(docz.credit_term_one)
