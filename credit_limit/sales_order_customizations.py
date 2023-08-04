@@ -96,10 +96,6 @@ def sales_order_on_submit(doc, method):
 
                 
 
-    if exists is not None and exists != 'approve':
-        converted_string = str(exists) 
-        throw(converted_string)
-        
     
     customer_name = doc.customer
     customer = frappe.get_doc("Customer", doc.customer)
