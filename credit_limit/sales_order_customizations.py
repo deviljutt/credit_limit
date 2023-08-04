@@ -43,8 +43,7 @@ def sales_order_on_submit(doc, method):
     price_level_three = int(docz.price_level_three)
 
     
-    converted_string = str(ordertotal) 
-    throw(converted_string)
+   
     
 
 
@@ -130,6 +129,10 @@ def sales_order_on_submit(doc, method):
 
 
     credit_term = get_credit_days(customer_name)
+    if credit_term is None:
+        return
+
+    
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
 
     credit_term_one = int(docz.credit_term_one)
@@ -137,8 +140,7 @@ def sales_order_on_submit(doc, method):
     credit_term_three = int(docz.credit_term_three)
     credit_term_four = int(docz.credit_term_four)
 
-    if credit_term is None:
-        return
+    
     
 
     xx = int(credit_term) - int(outstandingdays) 
