@@ -233,3 +233,5 @@ def get_date_difference_from_last_sale_invoice(customer_name):
         posting_date = last_invoice.posting_date
         date_difference = datetime.now().date() - posting_date
         return date_difference.days
+    else:
+        return 0
