@@ -119,8 +119,8 @@ def sales_order_on_submit(doc, method):
     if credit_term is None:
         return
 
-    if credit_term > days:
-        return
+   # if credit_term > days:
+    #    return
 
 
     converted_string = str(credit_term) 
