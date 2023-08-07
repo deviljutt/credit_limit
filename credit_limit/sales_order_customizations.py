@@ -131,11 +131,6 @@ def sales_order_on_submit(doc, method):
     xx = abs(xx)
 
 
-
-    converted_string = str(xx) 
-    throw(converted_string)
-
-
     if xx > credit_term_four:
         approval_role = "CEO"
         csv_values = ceo_profile
