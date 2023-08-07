@@ -86,8 +86,9 @@ def sales_order_on_submit(doc, method):
                 exists = "Only OM Profiles can approve"
 
                 
-    converted_string = str(exists) 
-    throw(converted_string)
+    if exists is not None and exists != 'approve':
+        converted_string = str(exists) 
+        throw(converted_string)
 
 
     
