@@ -74,7 +74,7 @@ def sales_order_on_submit(doc, method):
                 else:
                     exists = "Only AR-VP can approve"
 
-            elif xx < price_level_three:
+            else:
                 approval_role = "CEO"
                 csv_values = ceo_profile
                 value_array = csv_values.split(",")
