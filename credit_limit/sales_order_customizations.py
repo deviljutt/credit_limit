@@ -40,17 +40,10 @@ def sales_order_on_submit(doc, method):
     price_level_one = int(docz.price_level_one)
     price_level_two = int(docz.price_level_two)
 
-    
-   
-    
-    exists = None
 
+    exists = None
     if credit_limit is not None:
         xx = credit_limit-ordertotal
-        
-
-     
-        
         if xx <= 0:
             xx = abs(xx)        
             if xx < price_level_one:
@@ -121,8 +114,8 @@ def sales_order_on_submit(doc, method):
     if credit_term is None:
         return
 
-   if credit_term > days:
-      return
+    if credit_term > days:
+        return
 
 
     doctype = "Credit Limit Settings"
