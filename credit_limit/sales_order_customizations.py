@@ -160,7 +160,7 @@ def sales_order_on_submit(doc, method):
         if value_to_check in value_array:
             exists = "approve"
         else:
-            exists = "Credit Term: Only Level 2 can approve"
+            exists = "Credit Term: Only AR Profile can approve"
 
     elif xx > credit_term_one:
         approval_role = "Level 1"
@@ -170,7 +170,7 @@ def sales_order_on_submit(doc, method):
         if value_to_check in value_array:
             exists = "approve"
         else:
-            exists = "Credit Term: Only Level 1 can approve"
+            exists = "Credit Term: Only OM Profile can approve"
     
 
     if exists is not None and exists != 'approve':
