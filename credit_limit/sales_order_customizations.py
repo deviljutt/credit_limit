@@ -115,10 +115,6 @@ def sales_order_on_submit(doc, method):
     if credit_term is None:
         return
 
-    if credit_term > days:
-        return
-
-
     doctype = "Credit Limit Settings"
     docz = frappe.get_doc(doctype, doctype)  
     om_profile = docz.om_profile
@@ -129,6 +125,9 @@ def sales_order_on_submit(doc, method):
 
     
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
+
+    if credit_term > outstandingdays:
+        return
 
     
 
