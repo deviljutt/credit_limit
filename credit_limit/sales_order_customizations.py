@@ -42,7 +42,8 @@ def sales_order_on_submit(doc, method):
     price_level_two = int(docz.price_level_two)
     price_level_three = int(docz.price_level_three)
 
-    
+    converted_string = str(price_level_one) 
+    throw(converted_string) 
    
     
     exists = None
