@@ -115,6 +115,11 @@ def sales_order_on_submit(doc, method):
     if credit_term is None:
         return
 
+
+    converted_string = str(outstandingdays) 
+    throw(converted_string)
+
+
     if credit_term > days:
         return
 
@@ -129,8 +134,6 @@ def sales_order_on_submit(doc, method):
 
     
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
-    converted_string = str(outstandingdays) 
-    throw(converted_string)
 
     
 
