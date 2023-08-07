@@ -121,16 +121,7 @@ def sales_order_on_submit(doc, method):
     ar_profile = docz.ar_profile
     ar_vp = docz.ar_vp
     ceo_profile = docz.ceo_profile
-
-
-    
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
-
-    if credit_term > outstandingdays:
-        return
-
-    
-
     credit_term_one = int(docz.credit_term_one)+credit_term
     credit_term_two = int(docz.credit_term_two)+credit_term
     credit_term_three = int(docz.credit_term_three)+credit_term
@@ -138,6 +129,12 @@ def sales_order_on_submit(doc, method):
 
     xx = int(credit_term) - int(outstandingdays) 
     xx = abs(xx)
+
+
+
+    converted_string = str(xx) 
+    throw(converted_string)
+
 
     if xx > credit_term_four:
         approval_role = "CEO"
