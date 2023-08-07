@@ -53,6 +53,10 @@ def sales_order_on_submit(doc, method):
         
         if xx <= 0:
             xx = abs(xx)
+
+            converted_string = str(xx) 
+            throw(converted_string)
+            
             if xx < price_level_one:
                 approval_role = "Level 1"
                 csv_values = ar_profile
@@ -121,10 +125,6 @@ def sales_order_on_submit(doc, method):
 
    if credit_term > days:
       return
-
-
-    converted_string = str(credit_term) 
-    throw(converted_string)
 
 
     doctype = "Credit Limit Settings"
