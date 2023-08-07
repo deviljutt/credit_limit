@@ -122,10 +122,10 @@ def sales_order_on_submit(doc, method):
     ar_vp = docz.ar_vp
     ceo_profile = docz.ceo_profile
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
-    credit_term_one = int(docz.credit_term_one)+credit_term
-    credit_term_two = int(docz.credit_term_two)+credit_term
-    credit_term_three = int(docz.credit_term_three)+credit_term
-    credit_term_four = int(docz.credit_term_four)+credit_term
+    credit_term_one = int(docz.credit_term_one)
+    credit_term_two = int(docz.credit_term_two)
+    credit_term_three = int(docz.credit_term_three)
+    credit_term_four = int(docz.credit_term_four)
 
     xx = int(credit_term) - int(outstandingdays) 
     xx = abs(xx)
