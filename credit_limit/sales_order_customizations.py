@@ -115,6 +115,13 @@ def sales_order_on_submit(doc, method):
     time_difference =  timestamp - posting_date
     days = int(seconds_to_days(time_difference))
 
+    credit_term = get_credit_days(customer_name)
+    if credit_term is None:
+        return
+
+    if credit_term > days:
+        return
+
 
     doctype = "Credit Limit Settings"
     docz = frappe.get_doc(doctype, doctype)  
@@ -124,15 +131,13 @@ def sales_order_on_submit(doc, method):
     ceo_profile = docz.ceo_profile
 
 
-    credit_term = get_credit_days(customer_name)
-    if credit_term is None:
-        return
+    
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
 
-    credit_term_one = int(docz.credit_term_one)
-    credit_term_two = int(docz.credit_term_two)
-    credit_term_three = int(docz.credit_term_three)
-    credit_term_four = int(docz.credit_term_four)
+    credit_term_one = int(docz.credit_term_one)+credit_term
+    credit_term_two = int(docz.credit_term_two)+credit_term
+    credit_term_three = int(docz.credit_term_three)+credit_term
+    credit_term_four = int(docz.credit_term_four)+credit_term
 
     
     
