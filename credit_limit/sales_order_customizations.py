@@ -123,6 +123,10 @@ def sales_order_on_submit(doc, method):
         return
 
 
+    converted_string = str(credit_term) 
+    throw(converted_string)
+
+
     doctype = "Credit Limit Settings"
     docz = frappe.get_doc(doctype, doctype)  
     om_profile = docz.om_profile
@@ -134,10 +138,10 @@ def sales_order_on_submit(doc, method):
     
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
 
-    credit_term_one = int(docz.credit_term_one)+credit_term
-    credit_term_two = int(docz.credit_term_two)+credit_term
-    credit_term_three = int(docz.credit_term_three)+credit_term
-    credit_term_four = int(docz.credit_term_four)+credit_term
+    credit_term_one = int(docz.credit_term_one)
+    credit_term_two = int(docz.credit_term_two)
+    credit_term_three = int(docz.credit_term_three)
+    credit_term_four = int(docz.credit_term_four)
 
     
     
