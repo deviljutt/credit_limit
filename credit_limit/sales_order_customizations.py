@@ -49,10 +49,6 @@ def sales_order_on_submit(doc, method):
 
     if credit_limit is not None:
         xx = credit_limit-ordertotal
-        
-
-     
-        
         if xx <= 0:
             xx = abs(xx)
             if xx < price_level_one:
@@ -94,7 +90,9 @@ def sales_order_on_submit(doc, method):
             else:
                 exists = "Only OM Profiles can approve"
 
-                
+    if exists is not None and exists != 'approve':
+        converted_string = str(exists) 
+        throw(converted_string)            
 
     
     customer_name = doc.customer
