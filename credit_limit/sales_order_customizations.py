@@ -52,11 +52,7 @@ def sales_order_on_submit(doc, method):
      
         
         if xx <= 0:
-            xx = abs(xx)
-
-            converted_string = str(xx) 
-            throw(converted_string)
-            
+            xx = abs(xx)        
             if xx < price_level_one:
                 approval_role = "Level 1"
                 csv_values = ar_profile
@@ -97,9 +93,11 @@ def sales_order_on_submit(doc, method):
                 exists = "Only OM Profiles can approve"
 
                 
-    if exists is not None and exists != 'approve':
-        converted_string = str(exists) 
-        throw(converted_string)
+    converted_string = str(exists) 
+    throw(converted_string)
+
+
+    
     
     customer_name = doc.customer
     customer = frappe.get_doc("Customer", doc.customer)
