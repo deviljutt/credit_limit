@@ -33,7 +33,7 @@ frappe.ui.form.on('Sales Order', {
             callback: function (response) {
                 if (response.message) {
                     var linked_doc = response.message;
-                    shipping_supplier = linked_doc.shipping_supplier;
+                    shipping_supplier = linked_doc.shipping_suppliers;
                     shipping_name = linked_doc.shipping_name;
                     shipping_detail = linked_doc.shipping_detail;
 
