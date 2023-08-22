@@ -1,6 +1,6 @@
 frappe.ui.form.on('Customer', {
-  shipping_supplier: function (frm) {
-      var link_value = frm.doc.shipping_supplier;
+  shipping_suppliers: function (frm) {
+      var link_value = frm.doc.shipping_suppliers;
       if (link_value) {
         frappe.call({
             method: 'frappe.client.get',
