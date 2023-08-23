@@ -71,7 +71,7 @@ frappe.ui.form.on('Sales Invoice', {
                     shipping_name = linked_doc.shipping_name;
                     shipping_detail = linked_doc.shipping_detail;
 
-                    frm.set_value('shipping_suppliers', shipping_suppliers);   
+                    frm.set_value('shipping_suppliers', shipping_supplier);   
                     frm.set_value('shipping_names', shipping_name);  
                     frm.set_value('shipping_detail', shipping_detail);  
 
