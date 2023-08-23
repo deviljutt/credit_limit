@@ -1,24 +1,29 @@
 frappe.ui.form.on('Customer', {
-  shipping_suppliers: function (frm) {
-      var link_value = frm.doc.shipping_suppliers;
-      if (link_value) {
-        frappe.call({
-            method: 'frappe.client.get',
-            args: {
-                doctype: 'Supplier',
-                name: link_value
-            },
-            callback: function (response) {
-                if (response.message) {
-                    var linked_doc = response.message;
-                    firsvalue = linked_doc.supplier_names;
-                    frm.set_value('shipping_name', firsvalue);   
-                }
-            }
-        });
+    shipping_suppliers: function (frm) {
+        var link_value = frm.doc.shipping_suppliers;
+        if (link_value) {
+          frappe.call({
+            method: 'frappe.desk.form.load.getdoc',
+              args: {
+                  doctype: 'Supplier',
+                  name: link_value
+              },
+              callback: function (response) {
+                if(response.docs){
+                  var doc = response.docs[0];
+                  var address = '';
+                  if(doc.__onload.addr_list){
+                    address = doc.__onload.addr_list[0].city;
+                  }
+                  firsvalue = doc.supplier_names;
+                  frm.set_value('shipping_name', firsvalue); 
+                  frm.set_value('shipping_detail', address);
+                }  
+              }
+          });
+      }
     }
-  }
-});
+  });
 
 frappe.ui.form.on('Sales Order', {
   customer: function (frm) {
