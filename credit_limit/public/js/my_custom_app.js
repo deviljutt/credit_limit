@@ -109,3 +109,22 @@ frappe.ui.form.on('Delivery Note', {
     }
   }
 });
+
+frappe.ui.form.on('Packing Slip', {
+    delivery_note: function (frm) {
+        var link_value = frm.doc.delivery_note;
+        if (link_value) {
+          frappe.call({
+            method: 'frappe.client.get',
+              args: {
+                  doctype: 'Delivery Note',
+                  name: link_value
+              },
+              callback: function (response) {
+				var address = response.message.customer_address;
+				frm.set_value('customer_addresss', address); 
+              }
+          });
+      }
+    }
+  });
