@@ -212,8 +212,8 @@ frappe.ui.form.on('Packing Slip Item', {
 });
 
 frappe.ui.form.on('Delivery Note', {
-    refresh: function (frm) {
-        var deliveryNoteName = frm.doc.name; // Get the name of the linked Delivery Note
+    onload: function (frm) {
+        var deliveryNoteName = frm.doc.name;
         
         frappe.db.get_list('Packing Slip', {
             filters: {
@@ -231,16 +231,16 @@ frappe.ui.form.on('Delivery Note', {
               },
               callback: function (response) {
                 var items = response.docs[0].items;
-	       var packgtotal = response.docs[0].package_total;
+                var packgtotal = response.docs[0].package_total;
+
+
+				items.forEach(function (item) {
+					var row = frm.add_child('packing_slip_item');
+					row.item_code = item.item_code;
+					row.item_name = item.item_name;
+					row.qty = item.qty;
+				}); 
 				
-		items.forEach(function (item) {
-			var row = frm.add_child('packing_slip_item');
-			row.item_code = item.item_code;
-			row.item_name = item.item_name;
-			row.qty = item.qty;
-			row.package_qty = item.package_qty;
-		}); 
-		frm.set_value('package_s', packgtotal);  		
 				
               }
 			});
