@@ -186,3 +186,27 @@ frappe.ui.form.on('Delivery Note', {
     }
 	}
   });
+
+
+frappe.ui.form.on('Packing Slip Item', {
+    package_qty: function(frm, cdt, cdn) {
+        var item = frappe.get_doc(cdt, cdn);
+        // Access the updated value
+        var newQuantity = item.package_qty;
+
+        // Perform your custom action here, e.g., recalculate totals, update UI, etc.
+        // You can use the `frm` object to interact with the form's fields or perform actions.
+
+        // Example: Recalculate total
+        frm.doc.total_amount = frm.doc.items.reduce(function(acc, cur) {
+            return acc + (cur.package_qty * cur.rate);
+        }, 0);
+        var total = 0;
+        if(frm.doc.items){
+            frm.doc.items.forEach((item) => {
+                total += item.package_qty;
+            });
+        }
+        frm.set_value('package_total', total);  
+    }
+});
