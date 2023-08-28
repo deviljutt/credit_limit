@@ -233,16 +233,19 @@ frappe.ui.form.on('Delivery Note', {
                 var items = response.docs[0].items;
                 var packgtotal = response.docs[0].package_total;
 	
-				frm.clear_table('packing_slip_item');
-				items.forEach(function (item) {
-					var row = frm.add_child('packing_slip_item');
-					row.item_code = item.item_code;
-					row.item_name = item.item_name;
-					row.qty = item.qty;
-					row.package_qty = item.package_qty;
-				}); 
-				
-				frm.set_value('package_s', packgtotal);   
+		frm.clear_table('packing_slip_item');
+		items.forEach(function (item) {
+			var row = frm.add_child('packing_slip_item');
+			row.item_code = item.item_code;
+			row.item_name = item.item_name;
+			row.qty = item.qty;
+			row.package_qty = item.package_qty;
+			row.package_uom = item.stock_uom;
+		}); 
+		frm.set_value('package_s', packgtotal);   
+
+
+		      
 				
               }
 			});
