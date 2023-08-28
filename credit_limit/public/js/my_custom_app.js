@@ -238,6 +238,7 @@ frappe.ui.form.on('Delivery Note', {
 			row.item_code = item.item_code;
 			row.item_name = item.item_name;
 			row.qty = item.qty;
+			row.package_qty = item.package_qty;
 		}); 
 		frm.set_value('package_s', packgtotal);  		
 				
