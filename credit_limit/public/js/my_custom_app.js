@@ -210,3 +210,41 @@ frappe.ui.form.on('Packing Slip Item', {
         frm.set_value('package_total', total);  
     }
 });
+
+frappe.ui.form.on('Delivery Note', {
+    refresh: function (frm) {
+        var deliveryNoteName = frm.doc.name; // Get the name of the linked Delivery Note
+        
+        frappe.db.get_list('Packing Slip', {
+            filters: {
+                'delivery_note': deliveryNoteName
+            }
+        }).then(records => {
+            var docname = records[0].name;
+			
+			
+			frappe.call({
+            method: 'frappe.desk.form.load.getdoc',
+              args: {
+                  doctype: 'Packing Slip',
+                  name: docname
+              },
+              callback: function (response) {
+                var items = response.docs[0].items;
+				
+				items.forEach(function (item) {
+					var row = frm.add_child('packing_slip_item');
+					row.item_code = item.item_code;
+					row.item_name = item.item_name;
+					row.qty = item.qty;
+				}); 
+				
+				
+              }
+			});
+			
+			
+			
+        });
+    }
+});
