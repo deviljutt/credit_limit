@@ -18,73 +18,62 @@ def sales_order_on_submit(doc, method):
     user = frappe.get_doc("User", frappe.session.user)
     user = user.email
 
-    if user == "admin@example.com":
-        return        
-
 
     if customer.credit_limits:
         credit_limit = customer.credit_limits[0].credit_limit
     else:
-        credit_limit = None
+        credit_limit = 0
 
     ordertotal = doc.total
 
     docz = frappe.get_doc(doctype, doctype)  
     
-    om_profile = docz.om_profile
-    ar_profile = docz.ar_profile
-    ar_vp = docz.ar_vp
-    ceo_profile = docz.ceo_profile
+    om_profile = docz.om_profile.split(",")   
+    ar_profile = docz.ar_profile.split(",")   
+    ar_vp = docz.ar_vp.split(",")   
+    ceo_profile = docz.ceo_profile.split(",")   
 
 
-    price_level_one = int(docz.price_level_one)
-    price_level_two = int(docz.price_level_two)
-    price_level_three = int(docz.price_level_three)
-
-
+    price_level_one = docz.price_level_one
+    price_level_two = docz.price_level_two
+    price_level_three = docz.price_level_three
+    
     exists = None
+    role = None
+
     if credit_limit is not None:
         xx = credit_limit-ordertotal
         if xx <= 0:
-            xx = abs(xx)        
-            if xx < price_level_one:
-                approval_role = "Level 1"
-                csv_values = ar_profile
-                value_array = csv_values.split(",")
-                value_to_check = user
-                if value_to_check in value_array:
-                    exists = "approve"
-                else:
-                    exists = "Credit Limit: Only AR Profiles can approve"
+            xx = abs(xx)  
             
-            elif xx < price_level_two:
-                approval_role = "Level 2"
-                csv_values = ar_vp
-                value_array = csv_values.split(",")
-                value_to_check = user
-                if value_to_check in value_array:
+            
+            if user in om_profile:
+                lower_bound, upper_bound = map(int, price_level_one.split('-'))
+                if lower_bound <= xx <= upper_bound:
                     exists = "approve"
-                else:
-                    exists = "Credit Limit: Only AR-VP can approve"
-
-            elif xx < price_level_three:
-                csv_values = om_profile
-                value_array = csv_values.split(",")
-                value_to_check = user
-                if value_to_check in value_array:
+                    role = "om Profile"
+            if user in ar_profile:
+                lower_bound, upper_bound = map(int, price_level_two.split('-'))
+                if lower_bound <= xx <= upper_bound:
                     exists = "approve"
-                else:
-                    exists = "Credit Limit: Only OM Profiles can approve"
-            else:
-                approval_role = "CEO"
-                csv_values = ceo_profile
-                value_array = csv_values.split(",")
-                value_to_check = user
-                if value_to_check in value_array:
+                    role = "AR Profile"
+            if user in ar_vp:
+                lower_bound, upper_bound = map(int, price_level_three.split('-'))
+                if lower_bound <= xx <= upper_bound:
                     exists = "approve"
-                else:
-                    exists = "Credit Limit: Only CEO Profiles can approve"
-
+                    role = "AR VP"
+            if user in ceo_profile:
+                exists = "approve"
+                role = "ceo"
+                 
+    
+    
+            
+    if exists != 'approve':
+        converted_string = f'Credit Limit difference is {xx}. Contact upper-level permissions.'
+        throw(converted_string)
+    else:
+        pass
     
     # customer_name = doc.customer
     # customer = frappe.get_doc("Customer", doc.customer)
@@ -166,11 +155,7 @@ def sales_order_on_submit(doc, method):
     #         exists = "Credit Term: Only OM Profile can approve"
     
 
-    if exists is not None and exists != 'approve':
-        converted_string = str(exists) 
-        throw(converted_string)
-    else:
-        pass 
+    
           
     
 def sales_invoice_on_submit(doc, method):
