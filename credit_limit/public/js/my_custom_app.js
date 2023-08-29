@@ -240,7 +240,7 @@ frappe.ui.form.on('Delivery Note', {
 			row.item_name = item.item_name;
 			row.qty = item.qty;
 			row.package_qty = item.package_qty;
-			row.package_uom = item.stock_uom;
+			row.package_uom = item.package_uom;
 		}); 
 		frm.set_value('package_s', packgtotal);   
 
