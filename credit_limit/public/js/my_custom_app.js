@@ -111,7 +111,7 @@ frappe.ui.form.on('Delivery Note', {
 });
 
 frappe.ui.form.on('Packing Slip', {
-    delivery_note: function (frm) {
+    onload: function (frm) {
         var link_value = frm.doc.delivery_note;
         if (link_value) {
           frappe.call({
