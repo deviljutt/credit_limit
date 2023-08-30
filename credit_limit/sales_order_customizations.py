@@ -33,7 +33,12 @@ def sales_order_on_submit(doc, method):
        
        
     ordertotal = doc.total    
-    credit_limit = credit_limit - total_amount
+    credit_limit = total_amount - credit_limit
+    
+    if credit_limit <= 0:
+        approve = 'can approve'
+    else:
+        approve = credit_limit
 
     
 
@@ -79,7 +84,7 @@ def sales_order_on_submit(doc, method):
                 role = "ceo"
                  
     
-    converted_string = str(credit_limit)
+    converted_string = str(approve)
     throw(converted_string)
         
         
