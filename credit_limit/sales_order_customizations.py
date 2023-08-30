@@ -31,9 +31,17 @@ def sales_order_on_submit(doc, method):
         total_amount += entry.get('total', 0)
     
        
-       
+     
+    total_amount = 0
+    credit_limit = 20000
+
+
+     
     ordertotal = doc.total    
     credit_limit =  credit_limit - total_amount
+    
+    
+    
 
 
     docz = frappe.get_doc(doctype, doctype)  
@@ -76,11 +84,9 @@ def sales_order_on_submit(doc, method):
                 role = "ceo"
                  
         else:
-            pass
-    
+            exists = "approve"    
         
-        
-        
+
     if exists != 'approve':
         converted_string = f'Credit Limit difference is {xx}. Contact upper-level permissions.'
         throw(converted_string)
