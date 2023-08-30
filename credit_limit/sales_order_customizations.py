@@ -25,7 +25,7 @@ def sales_order_on_submit(doc, method):
         credit_limit = 0
         
         
-    saleorders = frappe.db.get_list('Sales Order', filters={ 'customer': doc.customer,'status': ['in', ['Draft']] }, fields=['total']); 
+    saleorders = frappe.db.get_list('Sales Order', filters={ 'customer': doc.customer,'docstatus': 1 }, fields=['total']); 
     total_amount = 0
     for entry in saleorders:
         total_amount += entry.get('total', 0)
