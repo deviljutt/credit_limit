@@ -30,20 +30,10 @@ def sales_order_on_submit(doc, method):
     for entry in saleorders:
         total_amount += entry.get('total', 0)
     
-       
-     
-    total_amount = 0
-    credit_limit = 20000
 
-
-     
     ordertotal = doc.total    
     credit_limit =  credit_limit - total_amount
     
-    
-    
-
-
     docz = frappe.get_doc(doctype, doctype)  
     
     om_profile = docz.om_profile.split(",")   
@@ -61,8 +51,9 @@ def sales_order_on_submit(doc, method):
 
 
     if credit_limit is not None: 
-        xx = credit_limit
-        if credit_limit < 0:  
+        xx = credit_limit-ordertotal
+
+        if xx < 0:  
             xx = abs(xx)  
             if user in om_profile:
                 lower_bound, upper_bound = map(int, price_level_one.split('-'))
