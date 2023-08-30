@@ -50,11 +50,14 @@ def sales_order_on_submit(doc, method):
     
     exists = None
     role = None
+    
+    converted_string = str(credit_limit)
+    throw(converted_string)
 
-    if credit_limit is not None:
-        credit_limit = abs(credit_limit) 
+    if credit_limit is not None: 
         xx = credit_limit
-        if credit_limit <= 0:   
+        if credit_limit <= 0:  
+            credit_limit = abs(credit_limit)
             xx = abs(xx)  
             if user in om_profile:
                 lower_bound, upper_bound = map(int, price_level_one.split('-'))
