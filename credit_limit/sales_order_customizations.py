@@ -22,7 +22,7 @@ def sales_order_on_submit(doc, method):
     if customer.credit_limits:
         credit_limit = customer.credit_limits[0].credit_limit
     else:
-        credit_limit = 2000
+        credit_limit = 0
         
         
     saleorders = frappe.db.get_list('Sales Order', filters={ 'customer': doc.customer,'status': ['in', ['To Deliver and Bill','To Deliver','Completed']] }, fields=['total']); 
