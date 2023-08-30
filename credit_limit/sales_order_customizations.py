@@ -53,7 +53,7 @@ def sales_order_on_submit(doc, method):
 
 
     if credit_limit is not None: 
-        if credit_limit <= 0:  
+        if credit_limit < 0:  
             xx = credit_limit
             xx = abs(xx)  
             if user in om_profile:
