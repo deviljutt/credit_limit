@@ -50,9 +50,7 @@ def sales_order_on_submit(doc, method):
     
     exists = None
     role = None
-    
-    converted_string = str(credit_limit)
-    throw(converted_string)
+
 
     if credit_limit is not None: 
         xx = credit_limit
