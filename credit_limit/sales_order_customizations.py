@@ -22,10 +22,10 @@ def sales_order_on_submit(doc, method):
     if customer.credit_limits:
         credit_limit = customer.credit_limits[0].credit_limit
     else:
-        credit_limit = 20000
+        credit_limit = 2000
         
         
-    saleorders = frappe.db.get_list('Sales Order', filters={ 'customer': doc.customer,'docstatus': 1 }, fields=['total']); 
+    saleorders = frappe.db.get_list('Sales Order', filters={ 'customer': doc.customer,'status': ['in', ['To Deliver and Bill','To Deliver','Completed']] }, fields=['total']); 
     total_amount = 0
     for entry in saleorders:
         total_amount += entry.get('total', 0)
@@ -33,8 +33,8 @@ def sales_order_on_submit(doc, method):
        
        
     ordertotal = doc.total    
-    credit_limit =  credit_limit- total_amount
-    
+    credit_limit =  credit_limit - total_amount
+
 
     docz = frappe.get_doc(doctype, doctype)  
     
@@ -52,8 +52,9 @@ def sales_order_on_submit(doc, method):
     role = None
 
     if credit_limit is not None:
-        xx = credit_limit        
-        if credit_limit <= 0:
+        credit_limit = abs(credit_limit) 
+        xx = credit_limit
+        if credit_limit <= 0:   
             xx = abs(xx)  
             if user in om_profile:
                 lower_bound, upper_bound = map(int, price_level_one.split('-'))
@@ -73,12 +74,15 @@ def sales_order_on_submit(doc, method):
             if user in ceo_profile:
                 exists = "approve"
                 role = "ceo"
+                 
         else:
             pass
-  
+    
+        
+        
         
     if exists != 'approve':
-        converted_string = f'Credit Limit difference is {xx}. Contact upper-level permissions.'+str(role)
+        converted_string = f'Credit Limit difference is {xx}. Contact upper-level permissions.'
         throw(converted_string)
     else:
         pass
