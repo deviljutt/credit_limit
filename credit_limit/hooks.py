@@ -11,7 +11,7 @@ app_license = "MIT"
 # Includes in <head>
 # ------------------
 
-#doc_events = {
+doc_events = {
 'Sales Order': {
       'before_submit': 'credit_limit.sales_order_customizations.sales_order_on_submit'
    }
