@@ -105,6 +105,8 @@ def sales_order_on_submit(doc, method):
          credit_term = 7
     
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
+    if outstandingdays is None:
+         credit_term = 0
     xx = int(credit_term) - int(outstandingdays) 
 
     exists = None
