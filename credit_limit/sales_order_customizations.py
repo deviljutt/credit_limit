@@ -170,7 +170,7 @@ def get_date_difference_from_last_sale_invoice(customer_name):
     diff = []
     if invoices:
         for item in invoices:
-            due_date = item['due_date']
+            due_date = item['posting_date']
             date_difference = datetime.now().date() - due_date
             diff.append(date_difference.days)
         
