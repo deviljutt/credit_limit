@@ -107,6 +107,12 @@ def sales_order_on_submit(doc, method):
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
     xx = int(credit_term) - int(outstandingdays) 
 
+    exists = None
+    role = None
+    price_level_one = docz.credit_term_one
+    price_level_two = docz.credit_term_two
+    price_level_three = docz.credit_term_three
+
     if xx is not None: 
         if xx < 0:  
             xx = abs(xx)  
@@ -133,7 +139,7 @@ def sales_order_on_submit(doc, method):
             exists = "approve" 
 
     if exists != 'approve':
-        converted_string = f'Credit Term difference is {xx}. Contact upper-level permissions. outstanding days is {outstandingdays} credit term days is {credit_term}'
+        converted_string = f'Credit Term difference is {xx}. Contact upper-level permissions. outstanding days is {outstandingdays} credit term days is {credit_term} {role}'
         throw(converted_string)
     else:
         pass
