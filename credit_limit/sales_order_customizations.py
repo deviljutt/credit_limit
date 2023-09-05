@@ -138,7 +138,7 @@ def sales_order_on_submit(doc, method):
         else:
             exists = "approve" 
 
-        converted_string = f'Credit Term difference is {xx}. Contact upper-level permissions. outstanding days is {outstandingdays} credit term days is {credit_term} {role}'
+        converted_string = f'Credit Term difference is {xx}. Contact upper-level permissions. outstanding days is {outstandingdays} credit term days is {credit_term} {role} {exists}'
         throw(converted_string)
 
 
