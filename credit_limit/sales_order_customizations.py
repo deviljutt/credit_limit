@@ -138,14 +138,8 @@ def sales_order_on_submit(doc, method):
         else:
             exists = "approve" 
 
-    converted_string = f'Credit Term difference is {xx}. Contact upper-level permissions. outstanding days is {outstandingdays} credit term days is {credit_term} {role}'
-    throw(converted_string)
-    
-          
-    
-def sales_invoice_on_submit(doc, method):
-        pass 
-    
+converted_string = f'Credit Term difference is {xx}. Contact upper-level permissions. outstanding days is {outstandingdays} credit term days is {credit_term} {role}'
+throw(converted_string)
 
 
 def seconds_to_days(seconds):
