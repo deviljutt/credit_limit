@@ -15,6 +15,15 @@ def sales_order_on_submit(doc, method):
     customer_name = doc.customer
     customer = frappe.get_doc("Customer", doc.customer)
 
+    saleorders = frappe.db.get_list('Sales Order', filters={ 'customer': doc.customer,'status': ['in', ['To Deliver and Bill','To Deliver','Completed']] }, fields=['total']); 
+    total_amount = 0
+    for entry in saleorders:
+        total_amount += entry.get('total', 0)
+    
+
+    ordertotal = doc.total    
+    
+
     user = frappe.get_doc("User", frappe.session.user)
     user = user.email
     docz = frappe.get_doc(doctype, doctype) 
@@ -25,7 +34,7 @@ def sales_order_on_submit(doc, method):
 
     if customer.credit_limits:
         credit_limit = customer.credit_limits[0].credit_limit
-
+        credit_limit =  credit_limit - total_amount
    
         ordertotal = doc.total    
         
@@ -35,7 +44,6 @@ def sales_order_on_submit(doc, method):
         
         exists = None
         role = None
-
 
         if credit_limit is not None: 
             xx = credit_limit-ordertotal
