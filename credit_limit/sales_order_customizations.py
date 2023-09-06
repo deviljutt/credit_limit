@@ -102,7 +102,7 @@ def sales_order_on_submit(doc, method):
     days = int(seconds_to_days(time_difference))
     credit_term = get_credit_days(customer_name)
     if credit_term is None:
-         credit_term = 7
+         credit_term = 0
     
     outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
     if outstandingdays is None:
