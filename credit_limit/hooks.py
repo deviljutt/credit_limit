@@ -11,11 +11,11 @@ app_license = "MIT"
 # Includes in <head>
 # ------------------
 
-#doc_events = {
-#'Sales Order': {
-#      'before_submit': 'credit_limit.sales_order_customizations.sales_order_on_submit'
- #  }
-#}
+doc_events = {
+'Sales Order': {
+      'before_submit': 'credit_limit.sales_order_customizations.sales_order_on_submit'
+   }
+}
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/credit_limit/css/credit_limit.css"
