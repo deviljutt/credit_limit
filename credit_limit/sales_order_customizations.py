@@ -21,66 +21,64 @@ def sales_order_on_submit(doc, method):
 
     if customer.credit_limits:
         credit_limit = customer.credit_limits[0].credit_limit
-    else:
-        credit_limit = 0
-        
-        
-    saleorders = frappe.db.get_list('Sales Order', filters={ 'customer': doc.customer,'status': ['in', ['To Deliver and Bill','To Deliver','Completed']] }, fields=['total']); 
-    total_amount = 0
-    for entry in saleorders:
-        total_amount += entry.get('total', 0)
-    
 
-    ordertotal = doc.total    
-    credit_limit =  credit_limit - total_amount
-    
-    docz = frappe.get_doc(doctype, doctype)  
-    
-    om_profile = docz.om_profile.split(",")   
-    ar_profile = docz.ar_profile.split(",")   
-    ar_vp = docz.ar_vp.split(",")   
-    ceo_profile = docz.ceo_profile.split(",")   
-
-
-    price_level_one = docz.price_level_one
-    price_level_two = docz.price_level_two
-    price_level_three = docz.price_level_three
-    
-    exists = None
-    role = None
-
-
-    if credit_limit is not None: 
-        xx = credit_limit-ordertotal
-
-        if xx < 0:  
-            xx = abs(xx)  
-            if user in om_profile:
-                lower_bound, upper_bound = map(int, price_level_one.split('-'))
-                if lower_bound <= xx <= upper_bound:
-                    exists = "approve"
-                    role = "om Profile"
-            if user in ar_profile:
-                lower_bound, upper_bound = map(int, price_level_two.split('-'))
-                if lower_bound <= xx <= upper_bound:
-                    exists = "approve"
-                    role = "AR Profile"
-            if user in ar_vp:
-                lower_bound, upper_bound = map(int, price_level_three.split('-'))
-                if lower_bound <= xx <= upper_bound:
-                    exists = "approve"
-                    role = "AR VP"
-            if user in ceo_profile:
-                exists = "approve"
-                role = "ceo"
-                 
-        else:
-            exists = "approve"    
+        saleorders = frappe.db.get_list('Sales Order', filters={ 'customer': doc.customer,'status': ['in', ['To Deliver and Bill','To Deliver','Completed']] }, fields=['total']); 
+        total_amount = 0
+        for entry in saleorders:
+            total_amount += entry.get('total', 0)
         
 
-    if exists != 'approve':
-        converted_string = f'Credit Limit difference is {xx}. Contact upper-level permissions.'
-        throw(converted_string)
+        ordertotal = doc.total    
+        credit_limit =  credit_limit - total_amount
+        
+        docz = frappe.get_doc(doctype, doctype)  
+        
+        om_profile = docz.om_profile.split(",")   
+        ar_profile = docz.ar_profile.split(",")   
+        ar_vp = docz.ar_vp.split(",")   
+        ceo_profile = docz.ceo_profile.split(",")   
+
+
+        price_level_one = docz.price_level_one
+        price_level_two = docz.price_level_two
+        price_level_three = docz.price_level_three
+        
+        exists = None
+        role = None
+
+
+        if credit_limit is not None: 
+            xx = credit_limit-ordertotal
+
+            if xx < 0:  
+                xx = abs(xx)  
+                if user in om_profile:
+                    lower_bound, upper_bound = map(int, price_level_one.split('-'))
+                    if lower_bound <= xx <= upper_bound:
+                        exists = "approve"
+                        role = "om Profile"
+                if user in ar_profile:
+                    lower_bound, upper_bound = map(int, price_level_two.split('-'))
+                    if lower_bound <= xx <= upper_bound:
+                        exists = "approve"
+                        role = "AR Profile"
+                if user in ar_vp:
+                    lower_bound, upper_bound = map(int, price_level_three.split('-'))
+                    if lower_bound <= xx <= upper_bound:
+                        exists = "approve"
+                        role = "AR VP"
+                if user in ceo_profile:
+                    exists = "approve"
+                    role = "ceo"
+                    
+            else:
+                exists = "approve"    
+            
+
+        if exists != 'approve':
+            converted_string = f'Credit Limit difference is {xx}. Contact upper-level permissions.'
+            throw(converted_string)
+    
     
     customer_name = doc.customer
     customer = frappe.get_doc("Customer", doc.customer)
