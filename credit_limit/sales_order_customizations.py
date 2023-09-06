@@ -124,11 +124,11 @@ def sales_order_on_submit(doc, method):
             else:
                 exists = "approve" 
 
-            if exists != 'approve':
-                converted_string = f'Credit Term difference is {xx}. Contact upper-level permissions.'
-                throw(converted_string)
-            else:
-                pass
+        if exists != 'approve':
+            converted_string = f'Credit Term difference is {xx}. Contact upper-level permissions.'
+            throw(converted_string)
+        else:
+            pass
     pass          
 
 def seconds_to_days(seconds):
