@@ -18,6 +18,10 @@ def sales_order_on_submit(doc, method):
     user = frappe.get_doc("User", frappe.session.user)
     user = user.email
     docz = frappe.get_doc(doctype, doctype) 
+    om_profile = docz.om_profile.split(",")   
+    ar_profile = docz.ar_profile.split(",")   
+    ar_vp = docz.ar_vp.split(",")   
+    ceo_profile = docz.ceo_profile.split(",")   
 
     if customer.credit_limits:
         credit_limit = customer.credit_limits[0].credit_limit
@@ -25,14 +29,6 @@ def sales_order_on_submit(doc, method):
    
         ordertotal = doc.total    
         
-         
-        
-        om_profile = docz.om_profile.split(",")   
-        ar_profile = docz.ar_profile.split(",")   
-        ar_vp = docz.ar_vp.split(",")   
-        ceo_profile = docz.ceo_profile.split(",")   
-
-
         price_level_one = docz.price_level_one
         price_level_two = docz.price_level_two
         price_level_three = docz.price_level_three
