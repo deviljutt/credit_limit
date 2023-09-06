@@ -178,3 +178,5 @@ def get_date_difference_from_last_sale_invoice(customer_name):
         
         maxz = max(diff)    
         return maxz
+    else:
+        return 0
