@@ -87,51 +87,49 @@ def sales_order_on_submit(doc, method):
     time_difference =  timestamp - posting_date
     days = int(seconds_to_days(time_difference))
     credit_term = get_credit_days(customer_name)
-    if credit_term is None:
-         credit_term = 0
-    
-    outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
-    if outstandingdays is None:
-         credit_term = 0
-    xx = int(credit_term) - int(outstandingdays) 
+    if credit_term:
+        outstandingdays = get_date_difference_from_last_sale_invoice(customer_name);
+        if outstandingdays is None:
+            credit_term = 0
+        xx = int(credit_term) - int(outstandingdays) 
 
-    exists = None
-    role = None
-    price_level_one = docz.credit_term_one
-    price_level_two = docz.credit_term_two
-    price_level_three = docz.credit_term_three
+        exists = None
+        role = None
+        price_level_one = docz.credit_term_one
+        price_level_two = docz.credit_term_two
+        price_level_three = docz.credit_term_three
 
-    if xx is not None: 
-        if xx < 0:  
-            xx = abs(xx)  
-            if user in om_profile:
-                lower_bound, upper_bound = map(int, price_level_one.split('-'))
-                if lower_bound <= xx <= upper_bound:
+        if xx is not None: 
+            if xx < 0:  
+                xx = abs(xx)  
+                if user in om_profile:
+                    lower_bound, upper_bound = map(int, price_level_one.split('-'))
+                    if lower_bound <= xx <= upper_bound:
+                        exists = "approve"
+                        role = "om Profile"
+                if user in ar_profile:
+                    lower_bound, upper_bound = map(int, price_level_two.split('-'))
+                    if lower_bound <= xx <= upper_bound:
+                        exists = "approve"
+                        role = "AR Profile"
+                if user in ar_vp:
+                    lower_bound, upper_bound = map(int, price_level_three.split('-'))
+                    if lower_bound <= xx <= upper_bound:
+                        exists = "approve"
+                        role = "AR VP"
+                if user in ceo_profile:
                     exists = "approve"
-                    role = "om Profile"
-            if user in ar_profile:
-                lower_bound, upper_bound = map(int, price_level_two.split('-'))
-                if lower_bound <= xx <= upper_bound:
-                    exists = "approve"
-                    role = "AR Profile"
-            if user in ar_vp:
-                lower_bound, upper_bound = map(int, price_level_three.split('-'))
-                if lower_bound <= xx <= upper_bound:
-                    exists = "approve"
-                    role = "AR VP"
-            if user in ceo_profile:
-                exists = "approve"
-                role = "ceo"
-                 
-        else:
-            exists = "approve" 
+                    role = "ceo"
+                    
+            else:
+                exists = "approve" 
 
-        if exists != 'approve':
-             converted_string = f'Credit Term difference is {xx}. Contact upper-level permissions.'
-             throw(converted_string)
-        else:
-             pass
-
+            if exists != 'approve':
+                converted_string = f'Credit Term difference is {xx}. Contact upper-level permissions.'
+                throw(converted_string)
+            else:
+                pass
+    pass          
 
 def seconds_to_days(seconds):
     days = seconds // 86400
