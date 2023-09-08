@@ -16,8 +16,8 @@ frappe.ui.form.on('Customer', {
                     address = doc.__onload.addr_list[0].city;
                   }
                   firsvalue = doc.supplier_names;
-                  frm.set_value('shipping_name', firsvalue); 
-                  frm.set_value('shipping_detail', address);
+                  frm.set_value('custom_shipping_name', firsvalue); 
+                  frm.set_value('custom_shipping_detail', address);
                 }  
               }
           });
@@ -40,8 +40,8 @@ frappe.ui.form.on('Sales Order', {
                 if (response.message) {
                     var linked_doc = response.message;
                     shipping_supplier = linked_doc.custom_shipping_supplier;
-                    shipping_name = linked_doc.shipping_name;
-                    shipping_detail = linked_doc.shipping_detail;
+                    shipping_name = linked_doc.custom_shipping_name;
+                    shipping_detail = linked_doc.custom_shipping_detail;
 
                     frm.set_value('shipping_suppliers', shipping_supplier);   
                     frm.set_value('shipping_names', shipping_name);  
@@ -68,8 +68,8 @@ frappe.ui.form.on('Sales Invoice', {
                 if (response.message) {
                     var linked_doc = response.message;
                     shipping_supplier = linked_doc.custom_shipping_supplier;
-                    shipping_name = linked_doc.shipping_name;
-                    shipping_detail = linked_doc.shipping_detail;
+                    shipping_name = linked_doc.custom_shipping_name;
+                    shipping_detail = linked_doc.custom_shipping_detail;
 
                     frm.set_value('shipping_suppliers', shipping_supplier);   
                     frm.set_value('shipping_names', shipping_name);  
@@ -96,8 +96,8 @@ frappe.ui.form.on('Delivery Note', {
                 if (response.message) {
                     var linked_doc = response.message;
                     shipping_supplier = linked_doc.custom_shipping_supplier;
-                    shipping_name = linked_doc.shipping_name;
-                    shipping_detail = linked_doc.shipping_detail;
+                    shipping_name = linked_doc.custom_shipping_name;
+                    shipping_detail = linked_doc.custom_shipping_detail;
 
                     frm.set_value('shipping_suppliers', shipping_supplier);   
                     frm.set_value('shipping_names', shipping_name);  
@@ -144,8 +144,8 @@ frappe.ui.form.on('Sales Invoice', {
 					if (response.message) {
 						var linked_doc = response.message;
 						shipping_supplier = linked_doc.custom_shipping_supplier;
-						shipping_name = linked_doc.shipping_name;
-						shipping_detail = linked_doc.shipping_detail;
+				                    shipping_name = linked_doc.custom_shipping_name;
+				                    shipping_detail = linked_doc.custom_shipping_detail;
 
 						frm.set_value('shipping_suppliers', shipping_supplier);   
 						frm.set_value('shipping_names', shipping_name);  
@@ -173,8 +173,9 @@ frappe.ui.form.on('Delivery Note', {
 					if (response.message) {
 						var linked_doc = response.message;
 						shipping_supplier = linked_doc.custom_shipping_supplier;
-						shipping_name = linked_doc.shipping_name;
-						shipping_detail = linked_doc.shipping_detail;
+						shipping_supplier = linked_doc.custom_shipping_supplier;
+				                    shipping_name = linked_doc.custom_shipping_name;
+				                    shipping_detail = linked_doc.custom_shipping_detail;
 
 						frm.set_value('shipping_suppliers', shipping_supplier);   
 						frm.set_value('shipping_names', shipping_name);  
