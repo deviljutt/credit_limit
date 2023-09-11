@@ -17,7 +17,7 @@
   "credit_term_one",
   "credit_term_two",
   "credit_term_three",
-  "credit_term_four"
+  "alert_message"
  ],
  "fields": [
   {
@@ -28,7 +28,7 @@
   {
    "fieldname": "price_level_one",
    "fieldtype": "Data",
-   "label": "Price Level 1"
+   "label": "Credit Limit OM Profiles"
   },
   {
    "fieldname": "ar_profile",
@@ -38,7 +38,7 @@
   {
    "fieldname": "price_level_two",
    "fieldtype": "Data",
-   "label": "Price Level 2"
+   "label": "Credit Limit AR Profiles"
   },
   {
    "fieldname": "ar_vp",
@@ -48,22 +48,22 @@
   {
    "fieldname": "price_level_three",
    "fieldtype": "Data",
-   "label": "Price Level 3"
+   "label": "Credit Limit AR-VP"
   },
   {
    "fieldname": "credit_term_one",
    "fieldtype": "Data",
-   "label": "Credit Term Day Level 1 (Days)"
+   "label": "Credit Term Days OM Profiles"
   },
   {
    "fieldname": "credit_term_two",
    "fieldtype": "Data",
-   "label": "Credit Term Day Level 2 (Days)"
+   "label": "Credit Term Days OM Profiles"
   },
   {
    "fieldname": "credit_term_three",
    "fieldtype": "Data",
-   "label": "Credit Term Day Level 3 (Days)"
+   "label": "Credit Term Days AR-VP"
   },
   {
    "fieldname": "ceo_profile",
@@ -71,15 +71,15 @@
    "label": "CEO Profiles"
   },
   {
-   "fieldname": "credit_term_four",
-   "fieldtype": "Data",
-   "label": "Credit Term Day Level 4 (Days)"
+   "fieldname": "alert_message",
+   "fieldtype": "Text Editor",
+   "label": "Alert Message"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-08-03 08:12:02.604346",
+ "modified": "2023-09-11 12:00:31.848368",
  "modified_by": "Administrator",
  "module": "Credit Limit",
  "name": "Credit Limit Settings",

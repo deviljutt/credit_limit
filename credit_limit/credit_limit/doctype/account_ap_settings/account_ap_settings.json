@@ -1,0 +1,222 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-09-11 12:21:14.182598",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sales_invoice",
+  "sale_invc_source_warehouse",
+  "sale_invc_sales_taxes_and_charges",
+  "sale_invc_income_account",
+  "sale_invc_expense_account",
+  "sale_invc_debit_to",
+  "delivery_note",
+  "source_warehouse",
+  "expense_account",
+  "payment_entry_reciver",
+  "mode_of_payment",
+  "account_paid_from",
+  "account_paid_to",
+  "payment_entry_lazada_reciver",
+  "payment_entry_modeofpayment",
+  "payment_entry_accountpaid",
+  "payment_entry_accountpaidto",
+  "purchase_invoice__for_lazada_and_shopee_fee",
+  "expense_head",
+  "credit_to",
+  "purshave_invc_shopee_ship",
+  "purshave_invc_expensehead",
+  "purshave_invc_creditto",
+  "paymententry_lazada",
+  "paymententry_modeofpayment",
+  "paymententry_accountpaidfrom",
+  "paymententry_creditto",
+  "paymententry_lazadaship",
+  "paymententry_lazadaship_mode",
+  "paymententry_lazadaship_accountfrom",
+  "paymententry_lazadaship_creditto"
+ ],
+ "fields": [
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Heading",
+   "label": "Sales Invoice "
+  },
+  {
+   "fieldname": "source_warehouse",
+   "fieldtype": "Data",
+   "label": "Source warehouse "
+  },
+  {
+   "fieldname": "expense_account",
+   "fieldtype": "Data",
+   "label": "Expense Account "
+  },
+  {
+   "fieldname": "sale_invc_source_warehouse",
+   "fieldtype": "Data",
+   "label": "Source warehouse"
+  },
+  {
+   "fieldname": "sale_invc_sales_taxes_and_charges",
+   "fieldtype": "Data",
+   "label": "Sales Taxes and Charges"
+  },
+  {
+   "fieldname": "sale_invc_income_account",
+   "fieldtype": "Data",
+   "label": "Income Account"
+  },
+  {
+   "fieldname": "sale_invc_expense_account",
+   "fieldtype": "Data",
+   "label": "Expense Account"
+  },
+  {
+   "fieldname": "sale_invc_debit_to",
+   "fieldtype": "Data",
+   "label": "Debit to"
+  },
+  {
+   "fieldname": "delivery_note",
+   "fieldtype": "Heading",
+   "label": "Delivery Note"
+  },
+  {
+   "fieldname": "payment_entry_reciver",
+   "fieldtype": "Heading",
+   "label": "Payment entry (Receive) - Shopee"
+  },
+  {
+   "fieldname": "mode_of_payment",
+   "fieldtype": "Data",
+   "label": "Mode of payment "
+  },
+  {
+   "fieldname": "account_paid_from",
+   "fieldtype": "Data",
+   "label": "Account Paid From"
+  },
+  {
+   "fieldname": "account_paid_to",
+   "fieldtype": "Data",
+   "label": "Account Paid To"
+  },
+  {
+   "fieldname": "payment_entry_lazada_reciver",
+   "fieldtype": "Heading",
+   "label": "Payment entry (Receive) - Lazada"
+  },
+  {
+   "fieldname": "payment_entry_modeofpayment",
+   "fieldtype": "Data",
+   "label": "mode of payment "
+  },
+  {
+   "fieldname": "payment_entry_accountpaid",
+   "fieldtype": "Data",
+   "label": "Account Paid From"
+  },
+  {
+   "fieldname": "payment_entry_accountpaidto",
+   "fieldtype": "Data",
+   "label": "Account Paid To "
+  },
+  {
+   "fieldname": "purchase_invoice__for_lazada_and_shopee_fee",
+   "fieldtype": "Heading",
+   "label": "Purchase Invoice  (For Lazada and shopee Fee)"
+  },
+  {
+   "fieldname": "expense_head",
+   "fieldtype": "Data",
+   "label": "Expense Head "
+  },
+  {
+   "fieldname": "credit_to",
+   "fieldtype": "Data",
+   "label": "Credit To"
+  },
+  {
+   "fieldname": "purshave_invc_shopee_ship",
+   "fieldtype": "Heading",
+   "label": "Purchase Invoice (For shopee shipping)"
+  },
+  {
+   "fieldname": "purshave_invc_expensehead",
+   "fieldtype": "Data",
+   "label": "Expense Head"
+  },
+  {
+   "fieldname": "purshave_invc_creditto",
+   "fieldtype": "Data",
+   "label": "Credit To"
+  },
+  {
+   "fieldname": "paymententry_lazada",
+   "fieldtype": "Heading",
+   "label": "Payment entry (Pay)  Lazada Fee"
+  },
+  {
+   "fieldname": "paymententry_modeofpayment",
+   "fieldtype": "Data",
+   "label": "Mode of payment "
+  },
+  {
+   "fieldname": "paymententry_accountpaidfrom",
+   "fieldtype": "Data",
+   "label": "Account Paid From"
+  },
+  {
+   "fieldname": "paymententry_creditto",
+   "fieldtype": "Data",
+   "label": "Credit To"
+  },
+  {
+   "fieldname": "paymententry_lazadaship",
+   "fieldtype": "Heading",
+   "label": "Payment entry (Pay) Lazada shipping"
+  },
+  {
+   "fieldname": "paymententry_lazadaship_mode",
+   "fieldtype": "Data",
+   "label": "Mode of payment"
+  },
+  {
+   "fieldname": "paymententry_lazadaship_accountfrom",
+   "fieldtype": "Data",
+   "label": "Account Paid From"
+  },
+  {
+   "fieldname": "paymententry_lazadaship_creditto",
+   "fieldtype": "Data",
+   "label": "Credit To "
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-09-11 12:31:46.060327",
+ "modified_by": "Administrator",
+ "module": "Credit Limit",
+ "name": "Account AP Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
