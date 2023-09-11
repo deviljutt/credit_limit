@@ -75,7 +75,7 @@ def sales_order_on_submit(doc, method):
             
 
         if exists != 'approve':
-            msg = converted_string.replace('[diffrence]', xx)
+            msg = alert_message.replace('[diffrence]', xx)
             converted_string = msg
             throw(converted_string)
     
