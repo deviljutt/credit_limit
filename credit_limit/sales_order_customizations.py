@@ -30,7 +30,8 @@ def sales_order_on_submit(doc, method):
     om_profile = docz.om_profile.split(",")   
     ar_profile = docz.ar_profile.split(",")   
     ar_vp = docz.ar_vp.split(",")   
-    ceo_profile = docz.ceo_profile.split(",")   
+    ceo_profile = docz.ceo_profile.split(",")
+    alert_message = docz.alert_message 
 
     if customer.credit_limits:
         credit_limit = customer.credit_limits[0].credit_limit
@@ -74,7 +75,8 @@ def sales_order_on_submit(doc, method):
             
 
         if exists != 'approve':
-            converted_string = f'Credit Limit difference is {xx}. Contact upper-level permissions.'
+            msg = converted_string.replace('[diffrence]', xx)
+            converted_string = msg
             throw(converted_string)
     
 
