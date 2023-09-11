@@ -75,8 +75,10 @@ def sales_order_on_submit(doc, method):
             
 
         if exists != 'approve':
+            emails = getwhocanapprove(xx)
             #msg = alert_message.replace('[diffrence]',str(xx))
             msg = alert_message.replace('[diffrence]','{}'.format(xx))
+            msg = alert_message.replace('[emails]',str(emails))
             converted_string = str(msg)
             throw(converted_string)
     
@@ -142,6 +144,27 @@ def sales_order_on_submit(doc, method):
             pass
     pass          
 
+def getwhocanapprove(xx):
+    doctype = "Credit Limit Settings"
+    docz = frappe.get_doc(doctype, doctype) 
+    price_level_one = docz.price_level_one
+    price_level_two = docz.price_level_two
+    price_level_three = docz.price_level_three
+    role = ''
+    lower_bound1, upper_bound1 = map(int, price_level_one.split('-'))
+    lower_bound2, upper_bound2 = map(int, price_level_two.split('-'))
+    lower_bound3, upper_bound3 = map(int, price_level_three.split('-'))
+
+    if lower_bound1 <= xx <= upper_bound1:
+        role = docz.om_profile
+    elif lower_bound2 <= xx <= upper_bound2:
+        role = docz.ar_profile
+    elif lower_bound3 <= xx <= upper_bound3:
+        role = docz.ar_vp
+    else:
+        role = "CEO"
+    return role
+    
 def seconds_to_days(seconds):
     days = seconds // 86400
     return days
