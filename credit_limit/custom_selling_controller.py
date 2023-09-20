@@ -7,4 +7,3 @@ def calculate_contribution(self):
 
 # Assign the custom function to the SellingController class
 SellingController.calculate_contribution = calculate_contribution
-
