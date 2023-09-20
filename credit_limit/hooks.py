@@ -113,7 +113,7 @@ override_doctype_class = {
 	"Custom Field": "credit_limit.custom_field.CustomField"
 }
 override_doctype_class = {
-	"Quotation": "credit_limit.custom_selling_controller.SellingController"
+	"Quotation": "credit_limit.SellingController"
 }
 
 # Document Events
