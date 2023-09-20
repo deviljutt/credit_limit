@@ -116,6 +116,7 @@ override_doctype_class = {
 	#"Quotation": "credit_limit.custom_selling_controller.SellingController"
 #}
 
+
 # Document Events
 # ---------------
 # Hook on document methods and events
