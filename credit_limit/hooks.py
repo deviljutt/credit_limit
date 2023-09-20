@@ -112,9 +112,9 @@ app_include_js = "/assets/credit_limit/js/my_custom_app.js?"+"000777777"
 override_doctype_class = {
 	"Custom Field": "credit_limit.custom_field.CustomField"
 }
-override_doctype_class = {
-	"Quotation": "credit_limit.custom_selling_controller.SellingController"
-}
+#override_doctype_class = {
+	#"Quotation": "credit_limit.custom_selling_controller.SellingController"
+#}
 
 # Document Events
 # ---------------
