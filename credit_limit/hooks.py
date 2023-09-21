@@ -108,14 +108,12 @@ app_include_js = "/assets/credit_limit/js/my_custom_app.js?"+"555221"
 # override_doctype_class = {
 #	"ToDo": "custom_app.overrides.CustomToDo"
 # }
-
 override_doctype_class = {
 	"Custom Field": "credit_limit.custom_field.CustomField",
     "Quotation": "credit_limit.custom_selling_controller.updatesellingconrtoller",
     "Sales Order": "credit_limit.custom_selling_controller.SellingController",
     "Pick List": "credit_limit.custom_selling_controller.SellingController"
 }
-
 # Document Events
 # ---------------
 # Hook on document methods and events
