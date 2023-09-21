@@ -20,7 +20,7 @@ app_license = "MIT"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/credit_limit/css/credit_limit.css"
 # app_include_js = "/assets/credit_limit/js/credit_limit.js"
-app_include_js = "/assets/credit_limit/js/my_custom_app.js?"+"5551"
+app_include_js = "/assets/credit_limit/js/my_custom_app.js?"+"555221"
 
 
 
@@ -111,9 +111,9 @@ app_include_js = "/assets/credit_limit/js/my_custom_app.js?"+"5551"
 
 override_doctype_class = {
 	"Custom Field": "credit_limit.custom_field.CustomField",
-    #"Quotation": "credit_limit.custom_selling_controller.updatesellingconrtoller"
-    #"Sales Order": "credit_limit.custom_selling_controller.SellingController",
-    #"Pick List": "credit_limit.custom_selling_controller.SellingController"
+    "Quotation": "credit_limit.custom_selling_controller.updatesellingconrtoller",
+    "Sales Order": "credit_limit.custom_selling_controller.SellingController",
+    "Pick List": "credit_limit.custom_selling_controller.SellingController"
 }
 
 # Document Events
