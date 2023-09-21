@@ -115,6 +115,7 @@ override_doctype_class = {
     #"Sales Order": "credit_limit.custom_selling_controller.SellingController",
     #"Pick List": "credit_limit.custom_selling_controller.SellingController"
 }
+
 # Document Events
 # ---------------
 # Hook on document methods and events
