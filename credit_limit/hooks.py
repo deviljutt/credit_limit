@@ -112,8 +112,12 @@ app_include_js = "/assets/credit_limit/js/my_custom_app.js?"+"000777777"
 
 override_doctype_class = {
 	"Custom Field": "credit_limit.custom_field.CustomField",
-    "Quotation": "credit_limit.custom_selling_controller.updatesellingconrtoller",
-    "Sales Order": "credit_limit.custom_sales_order.SalesOrder"
+    #"Quotation": "credit_limit.custom_selling_controller.updatesellingconrtoller",
+    #"Sales Order": "credit_limit.custom_sales_order.SalesOrder"
+}
+
+override_whitelisted_methods = {
+	"erpnext.selling.doctype.quotation.quotation.make_sales_order": "credit_limit.custom_sales_order.custom_method_name"
 }
 
 # Document Events
