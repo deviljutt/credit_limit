@@ -109,10 +109,10 @@ app_include_js = "/assets/credit_limit/js/my_custom_app.js?"+"000777777"
 #	"ToDo": "custom_app.overrides.CustomToDo"
 # }
 
-
 override_doctype_class = {
 	"Custom Field": "credit_limit.custom_field.CustomField",
-    "Quotation": "credit_limit.custom_selling_controller.updatesellingconrtoller"
+    "Quotation": "credit_limit.custom_selling_controller.updatesellingconrtoller",
+    "Sales Team": "credit_limit.custom_selling_controller.updatesellingconrtoller"
 }
 
 # Document Events
