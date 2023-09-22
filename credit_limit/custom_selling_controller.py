@@ -12,5 +12,11 @@ from erpnext.stock.utils import get_incoming_rate
 from erpnext.controllers.selling_controller import SellingController
 
 class updatesellingconrtoller(SellingController):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def __setup__(self):
+        self.flags.ignore_permlevel_for_fields = ["selling_price_list", "price_list_currency"]
+
     def calculate_contribution(self):
-            return
+        return
