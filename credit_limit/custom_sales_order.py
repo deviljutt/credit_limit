@@ -27,20 +27,6 @@ from erpnext.stock.stock_balance import get_reserved_qty, update_bin_qty
 
 
 class SalesOrder(updatesellingconrtoller):
-	def __init__(self, *args, **kwargs):
-		super(SalesOrder, self).__init__(*args, **kwargs)
-
-	def __init__(self, *args, **kwargs):
-		super(SalesOrder, self).__init__(*args, **kwargs)
-
-	def onload(self) -> None:
-		if frappe.db.get_single_value("Stock Settings", "enable_stock_reservation"):
-			if self.has_unreserved_stock():
-				self.set_onload("has_unreserved_stock", True)
-
-		if has_reserved_stock(self.doctype, self.name):
-			self.set_onload("has_reserved_stock", True)
-
 	def validate(self):
 		super(SalesOrder, self).validate()
 		self.validate_delivery_date()
