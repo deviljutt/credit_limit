@@ -19,7 +19,8 @@ app_license = "MIT"
 
 doc_events = {
 'Sales Order': {
-      'before_submit': 'credit_limit.saleordersubmitbefore.sales_order_on_submit'
+      'before_submit': 'credit_limit.saleordersubmitbefore.sales_order_on_submit',
+	'before_save': 'credit_limit.saleordersubmitbefore.sales_order_on_submit'
    }
 }
 
